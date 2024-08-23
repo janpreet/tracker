@@ -26,7 +26,9 @@ function formatAWSPermissions(permissions) {
         <div><strong>Version:</strong> ${policy.Version}</div>
         <div><strong>Statements:</strong></div>`;
     
-    output += policy.Statement.map(statement => {
+    const statements = Array.isArray(policy.Statement) ? policy.Statement : [policy.Statement];
+    
+    output += statements.map(statement => {
         let statementOutput = `<div class="statement">
             <div><strong>Effect:</strong> ${statement.Effect}</div>`;
         
