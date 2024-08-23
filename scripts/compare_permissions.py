@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 
 def compare_permissions():
-    providers = ['aws', 'azure', 'gcp', 'oracle']
+    providers = ['aws', 'azure', 'gcp']
     comparison_results = {}
 
     for provider in providers:

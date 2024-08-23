@@ -22,10 +22,10 @@ def fetch_aws_permissions():
             'PolicyDocument': policy_version['PolicyVersion']['Document']
         })
     
-    os.makedirs('src/snapshots/aws', exist_ok=True)
+    os.makedirs('snapshots/aws', exist_ok=True)
     
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-    filename = f'src/snapshots/aws/aws_permissions_{timestamp}.json'
+    filename = f'snapshots/aws/aws_permissions_{timestamp}.json'
     with open(filename, 'w') as f:
         json.dump(detailed_policies, f, indent=2)
 
