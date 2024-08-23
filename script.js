@@ -129,7 +129,7 @@ function displayRoles(roles) {
         const list = document.createElement('ul');
         roles.forEach((item, index) => {
             const li = document.createElement('li');
-            const roleName = item.PolicyName || item.RoleName || item.name || `Role ${index + 1}`;
+            const roleName = (item.PolicyName || item.RoleName || item.name || `Role ${index + 1}`).replace('roles/', '');
             li.innerHTML = `
                 <div class="role-header" onclick="togglePermissions(${index})">
                     <span class="expand-icon">+</span> ${roleName}
