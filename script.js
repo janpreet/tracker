@@ -82,6 +82,131 @@ function formatGCPPermissions(permissions) {
     return output;
 }
 
+function groupRoles(roles) {
+    const groupedRoles = {};
+
+    roles.forEach(role => {
+        const roleName = (role.RoleName || role.PolicyName || role.name || '').replace('roles/', '');
+        const prefix = roleName.split('.')[0];  // Group by the prefix before the first '.'
+
+        if (!groupedRoles[prefix]) {
+            groupedRoles[prefix] = [];
+        }
+        groupedRoles[prefix].push(role);
+    });
+
+    return groupedRoles;
+}
+
+function displayRoles(roles) {
+    const resultsDiv = document.getElementById('comparison-results');
+    resultsDiv.innerHTML = '';
+
+    if (roles.length > 0) {
+        const groupedRoles = groupRoles(roles);
+        const list = document.createElement('ul');
+
+        Object.keys(groupedRoles).forEach((groupName, groupIndex) => {
+            const groupItem = document.createElement('li');
+            groupItem.innerHTML = `<div class="group-header" onclick="toggleGroup(${groupIndex})">
+                                       <span class="expand-icon">+</span> ${groupName}
+                                   </div>`;
+            const sublist = document.createElement('ul');
+            sublist.id = `group-${groupIndex}`;
+            sublist.style.display = 'none';
+
+            groupedRoles[groupName].forEach((item, roleIndex) => {
+                const li = document.createElement('li');
+                const roleName = (item.RoleName || item.PolicyName || item.name || `Role ${roleIndex + 1}`).replace('roles/', '');
+                li.innerHTML = `
+                    <div class="role-header" onclick="togglePermissions('${groupIndex}-${roleIndex}')">
+                        <span class="expand-icon">+</span> ${roleName}
+                    </div>
+                    <div id="permissions-${groupIndex}-${roleIndex}" class="permissions-list" style="display: none;">
+                        ${formatPermissions(item, currentProvider)}
+                    </div>
+                `;
+                sublist.appendChild(li);
+            });
+
+            groupItem.appendChild(sublist);
+            list.appendChild(groupItem);
+        });
+
+        resultsDiv.appendChild(list);
+    } else {
+        resultsDiv.textContent = 'No data available for ' + currentProvider;
+    }
+}
+
+function toggleGroup(groupIndex) {
+    const groupList = document.getElementById(`group-${groupIndex}`);
+    const expandIcon = groupList.previousElementSibling.querySelector('.expand-icon');
+    if (groupList.style.display === 'none') {
+        groupList.style.display = 'block';
+        expandIcon.textContent = '-';
+    } else {
+        groupList.style.display = 'none';
+        expandIcon.textContent = '+';
+    }
+}
+
+function togglePermissions(index) {
+    const permissionsDiv = document.getElementById(`permissions-${index}`);
+    const expandIcon = permissionsDiv.previousElementSibling.querySelector('.expand-icon');
+    if (permissionsDiv.style.display === 'none') {
+        permissionsDiv.style.display = 'block';
+        expandIcon.textContent = '-';
+    } else {
+        permissionsDiv.style.display = 'none';
+        expandIcon.textContent = '+';
+    }
+}
+
+function filterRoles() {
+    const searchTerm = document.getElementById('role-search').value.toLowerCase();
+    const filteredRoles = allRoles.filter(role => {
+        const roleName = (role.RoleName || role.PolicyName || role.name || '').toLowerCase();
+        if (roleName.includes(searchTerm)) return true;
+
+        // Search within includedPermissions for GCP
+        if (role.includedPermissions && searchInArray(role.includedPermissions, searchTerm)) return true;
+
+        // Search within AWS PolicyDocument statements
+        if (role.PolicyDocument && role.PolicyDocument.Statement) {
+            const statements = Array.isArray(role.PolicyDocument.Statement) 
+                ? role.PolicyDocument.Statement 
+                : [role.PolicyDocument.Statement];
+            return statements.some(statement => 
+                (statement.Action && searchInArray(statement.Action, searchTerm)) ||
+                (statement.NotAction && searchInArray(statement.NotAction, searchTerm)) ||
+                (statement.Resource && searchInArray(statement.Resource, searchTerm))
+            );
+        }
+
+        // Search within Azure permissions
+        if (role.Permissions) {
+            return role.Permissions.some(perm =>
+                searchInArray(perm.actions, searchTerm) ||
+                searchInArray(perm.not_actions, searchTerm) ||
+                searchInArray(perm.data_actions, searchTerm) ||
+                searchInArray(perm.not_data_actions, searchTerm)
+            );
+        }
+
+        return false;
+    });
+
+    displayRoles(filteredRoles);
+}
+
+function searchInArray(arr, term) {
+    if (!arr) return false;
+    if (typeof arr === 'string') return arr.toLowerCase().includes(term);
+    if (Array.isArray(arr)) return arr.some(item => item.toLowerCase().includes(term));
+    return false;
+}
+
 function setActiveButton(provider) {
     document.querySelectorAll('#provider-buttons button').forEach(button => {
         button.classList.remove('active');
@@ -120,86 +245,6 @@ async function loadComparison(provider, date = null) {
         resultsDiv.textContent = 'Error loading data. Please check the console for more information.';
     }
 }
-
-function displayRoles(roles) {
-    const resultsDiv = document.getElementById('comparison-results');
-    resultsDiv.innerHTML = '';
-
-    if (roles.length > 0) {
-        const list = document.createElement('ul');
-        roles.forEach((item, index) => {
-            const li = document.createElement('li');
-            const roleName = (item.PolicyName || item.RoleName || item.name || `Role ${index + 1}`).replace('roles/', '');
-            li.innerHTML = `
-                <div class="role-header" onclick="togglePermissions(${index})">
-                    <span class="expand-icon">+</span> ${roleName}
-                </div>
-                <div id="permissions-${index}" class="permissions-list" style="display: none;">
-                    ${formatPermissions(item, currentProvider)}
-                </div>
-            `;
-            list.appendChild(li);
-        });
-        resultsDiv.appendChild(list);
-    } else {
-        resultsDiv.textContent = 'No data available for ' + currentProvider;
-    }
-}
-
-function togglePermissions(index) {
-    const permissionsDiv = document.getElementById(`permissions-${index}`);
-    const expandIcon = permissionsDiv.previousElementSibling.querySelector('.expand-icon');
-    if (permissionsDiv.style.display === 'none') {
-        permissionsDiv.style.display = 'block';
-        expandIcon.textContent = '-';
-    } else {
-        permissionsDiv.style.display = 'none';
-        expandIcon.textContent = '+';
-    }
-}
-
-function filterRoles() {
-    const searchTerm = document.getElementById('role-search').value.toLowerCase();
-    const filteredRoles = allRoles.filter(role => {
-        const roleName = (role.PolicyName || role.RoleName || role.name || '').toLowerCase();
-        if (roleName.includes(searchTerm)) return true;
-
-        if (role.PolicyDocument && role.PolicyDocument.Statement) {
-            const statements = Array.isArray(role.PolicyDocument.Statement) 
-                ? role.PolicyDocument.Statement 
-                : [role.PolicyDocument.Statement];
-            return statements.some(statement => 
-                (statement.Action && searchInArray(statement.Action, searchTerm)) ||
-                (statement.NotAction && searchInArray(statement.NotAction, searchTerm)) ||
-                (statement.Resource && searchInArray(statement.Resource, searchTerm))
-            );
-        }
-
-        if (role.Permissions) {
-            return role.Permissions.some(perm =>
-                searchInArray(perm.actions, searchTerm) ||
-                searchInArray(perm.not_actions, searchTerm) ||
-                searchInArray(perm.data_actions, searchTerm) ||
-                searchInArray(perm.not_data_actions, searchTerm)
-            );
-        }
-
-        if (role.includedPermissions) {
-            return searchInArray(role.includedPermissions, searchTerm);
-        }
-
-        return false;
-    });
-    displayRoles(filteredRoles);
-}
-
-function searchInArray(arr, term) {
-    if (!arr) return false;
-    if (typeof arr === 'string') return arr.toLowerCase().includes(term);
-    if (Array.isArray(arr)) return arr.some(item => item.toLowerCase().includes(term));
-    return false;
-}
-
 
 document.addEventListener('DOMContentLoaded', () => {
     loadComparison('aws');
