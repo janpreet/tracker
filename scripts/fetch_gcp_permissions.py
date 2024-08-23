@@ -32,7 +32,7 @@ def fetch_gcp_permissions():
         request = service.roles().list_next(previous_request=request, previous_response=response)
 
     os.makedirs('snapshots/gcp', exist_ok=True)
-
+    print(f"Fetched {len(roles)} roles from GCP")
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     filename = f'snapshots/gcp/gcp_permissions_{timestamp}.json'
     with open(filename, 'w') as f:

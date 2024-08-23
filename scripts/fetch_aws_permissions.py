@@ -28,6 +28,8 @@ def fetch_aws_permissions():
     filename = f'snapshots/aws/aws_permissions_{timestamp}.json'
     with open(filename, 'w') as f:
         json.dump(detailed_policies, f, indent=2)
+    with open('snapshots/aws/aws_permissions_latest.json', 'w') as f:
+        json.dump(role_definitions, f, indent=2)
 
 if __name__ == "__main__":
     fetch_aws_permissions()

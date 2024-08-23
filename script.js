@@ -1,9 +1,16 @@
-async function loadComparison(provider) {
+let currentProvider = 'aws';
+
+async function loadComparison(provider, date = null) {
+    currentProvider = provider;
     const resultsDiv = document.getElementById('comparison-results');
+    const lastSnapshotSpan = document.getElementById('last-snapshot-date');
     resultsDiv.innerHTML = 'Loading...';
 
     try {
-        const response = await fetch(`./snapshots/${provider}/${provider}_permissions_latest.json`);
+        const filename = date 
+            ? `${provider}_permissions_${date.replace(/-/g, '')}.json`
+            : `${provider}_permissions_latest.json`;
+        const response = await fetch(`./snapshots/${provider}/${filename}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -19,6 +26,10 @@ async function loadComparison(provider) {
                 list.appendChild(li);
             });
             resultsDiv.appendChild(list);
+
+            // Update last snapshot date
+            const lastModified = new Date(response.headers.get('last-modified'));
+            lastSnapshotSpan.textContent = lastModified.toLocaleString();
         } else {
             resultsDiv.textContent = 'No data available for ' + provider;
         }
@@ -30,8 +41,17 @@ async function loadComparison(provider) {
 
 document.addEventListener('DOMContentLoaded', () => {
     loadComparison('aws');
-});
 
-document.getElementById('aws-button').addEventListener('click', () => loadComparison('aws'));
-document.getElementById('azure-button').addEventListener('click', () => loadComparison('azure'));
-document.getElementById('gcp-button').addEventListener('click', () => loadComparison('gcp'));
+    document.getElementById('aws-button').addEventListener('click', () => loadComparison('aws'));
+    document.getElementById('azure-button').addEventListener('click', () => loadComparison('azure'));
+    document.getElementById('gcp-button').addEventListener('click', () => loadComparison('gcp'));
+
+    document.getElementById('compare-button').addEventListener('click', () => {
+        const date = document.getElementById('snapshot-date').value;
+        if (date) {
+            loadComparison(currentProvider, date);
+        } else {
+            alert('Please select a date to compare.');
+        }
+    });
+});
