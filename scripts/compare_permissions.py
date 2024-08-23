@@ -1,13 +1,13 @@
 import json
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 
 def compare_permissions():
-    providers = ['aws']
+    providers = ['aws', 'azure', 'gcp', 'oracle']
     comparison_results = {}
 
     for provider in providers:
-        snapshot_dir = f'src/snapshots/{provider}'
+        snapshot_dir = f'snapshots/{provider}'
         files = sorted(os.listdir(snapshot_dir), reverse=True)
         
         if len(files) < 2:
@@ -33,8 +33,12 @@ def compare_permissions():
         comparison_results[provider] = changes
 
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-    filename = f'src/snapshots/comparison_{timestamp}.json'
-    with open(filename, 'w') as f:
+    os.makedirs('snapshots', exist_ok=True)
+    
+    with open(f'snapshots/comparison_{timestamp}.json', 'w') as f:
+        json.dump(comparison_results, f, indent=2)
+    
+    with open('snapshots/comparison_latest.json', 'w') as f:
         json.dump(comparison_results, f, indent=2)
 
 if __name__ == "__main__":
