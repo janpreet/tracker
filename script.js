@@ -18,16 +18,23 @@ async function loadComparison(provider, date = null) {
         
         resultsDiv.innerHTML = '';
 
-        if (data && data.length > 0) {
+        if (data && (Array.isArray(data) ? data.length > 0 : Object.keys(data).length > 0)) {
             const list = document.createElement('ul');
-            data.forEach(role => {
+            (Array.isArray(data) ? data : [data]).forEach((item, index) => {
                 const li = document.createElement('li');
-                li.textContent = `Role: ${role.RoleName || role.name}`;
+                const roleName = item.PolicyName || item.RoleName || `Role ${index + 1}`;
+                li.innerHTML = `
+                    <div class="role-header" onclick="togglePermissions(${index})">
+                        <span class="expand-icon">+</span> ${roleName}
+                    </div>
+                    <div id="permissions-${index}" class="permissions-list" style="display: none;">
+                        ${formatPermissions(item.PolicyDocument || item.Permissions)}
+                    </div>
+                `;
                 list.appendChild(li);
             });
             resultsDiv.appendChild(list);
 
-            // Update last snapshot date
             const lastModified = new Date(response.headers.get('last-modified'));
             lastSnapshotSpan.textContent = lastModified.toLocaleString();
         } else {
@@ -36,6 +43,48 @@ async function loadComparison(provider, date = null) {
     } catch (error) {
         console.error('Error:', error);
         resultsDiv.textContent = 'Error loading data. Please check the console for more information.';
+    }
+}
+
+function formatPermissions(permissions) {
+    if (Array.isArray(permissions)) {
+        return permissions.map(perm => `
+            <div>
+                <strong>Actions:</strong> ${perm.actions.join(', ')}<br>
+                <strong>Not Actions:</strong> ${perm.not_actions.join(', ')}<br>
+                <strong>Data Actions:</strong> ${perm.data_actions.join(', ')}<br>
+                <strong>Not Data Actions:</strong> ${perm.not_data_actions.join(', ')}
+            </div>
+        `).join('<hr>');
+    } else if (typeof permissions === 'object') {
+        return `
+            <div>
+                <strong>Version:</strong> ${permissions.Version}<br>
+                <strong>Statements:</strong><br>
+                ${permissions.Statement.map(statement => `
+                    <div style="margin-left: 20px;">
+                        <strong>Effect:</strong> ${statement.Effect}<br>
+                        ${statement.Action ? `<strong>Action:</strong> ${Array.isArray(statement.Action) ? statement.Action.join(', ') : statement.Action}<br>` : ''}
+                        ${statement.NotAction ? `<strong>NotAction:</strong> ${Array.isArray(statement.NotAction) ? statement.NotAction.join(', ') : statement.NotAction}<br>` : ''}
+                        <strong>Resource:</strong> ${statement.Resource}
+                    </div>
+                `).join('<hr>')}
+            </div>
+        `;
+    } else {
+        return `<div>${JSON.stringify(permissions)}</div>`;
+    }
+}
+
+function togglePermissions(index) {
+    const permissionsDiv = document.getElementById(`permissions-${index}`);
+    const expandIcon = permissionsDiv.previousElementSibling.querySelector('.expand-icon');
+    if (permissionsDiv.style.display === 'none') {
+        permissionsDiv.style.display = 'block';
+        expandIcon.textContent = '-';
+    } else {
+        permissionsDiv.style.display = 'none';
+        expandIcon.textContent = '+';
     }
 }
 

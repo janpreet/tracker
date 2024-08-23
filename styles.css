@@ -50,3 +50,22 @@ li {
     background-color: #2e2e2e;
     border-radius: 3px;
 }
+
+.role-header {
+    cursor: pointer;
+    padding: 5px;
+    background-color: #3700b3;
+    border-radius: 3px;
+}
+
+.expand-icon {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.permissions-list {
+    padding-left: 25px;
+    margin-top: 5px;
+}
