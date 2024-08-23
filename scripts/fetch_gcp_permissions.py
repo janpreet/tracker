@@ -17,16 +17,12 @@ def fetch_gcp_permissions():
         )
         service = build('iam', 'v1', credentials=credentials)
 
-        project_id = os.environ.get('GCP_PROJECT_ID')
-        if not project_id:
-            raise ValueError("GCP_PROJECT_ID environment variable is not set.")
-
         roles = []
-        request = service.projects().roles().list(parent=f'projects/{project_id}')
+        request = service.roles().list()
         while request is not None:
             response = request.execute()
             roles.extend(response.get('roles', []))
-            request = service.projects().roles().list_next(previous_request=request, previous_response=response)
+            request = service.roles().list_next(previous_request=request, previous_response=response)
 
         detailed_roles = []
         for role in roles:
