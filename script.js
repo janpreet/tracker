@@ -47,32 +47,46 @@ async function loadComparison(provider, date = null) {
 }
 
 function formatPermissions(permissions) {
-    if (Array.isArray(permissions)) {
-        return permissions.map(perm => `
-            <div>
-                <strong>Actions:</strong> ${perm.actions.join(', ')}<br>
-                <strong>Not Actions:</strong> ${perm.not_actions.join(', ')}<br>
-                <strong>Data Actions:</strong> ${perm.data_actions.join(', ')}<br>
-                <strong>Not Data Actions:</strong> ${perm.not_data_actions.join(', ')}
-            </div>
-        `).join('<hr>');
-    } else if (typeof permissions === 'object') {
-        return `
-            <div>
-                <strong>Version:</strong> ${permissions.Version}<br>
-                <strong>Statements:</strong><br>
-                ${permissions.Statement.map(statement => `
+    try {
+        if (Array.isArray(permissions)) {
+            return permissions.map(perm => `
+                <div>
+                    <strong>Actions:</strong> ${perm.actions.join(', ')}<br>
+                    <strong>Not Actions:</strong> ${perm.not_actions.join(', ')}<br>
+                    <strong>Data Actions:</strong> ${perm.data_actions.join(', ')}<br>
+                    <strong>Not Data Actions:</strong> ${perm.not_data_actions.join(', ')}
+                </div>
+            `).join('<hr>');
+        } else if (typeof permissions === 'object') {
+            let output = `<div><strong>Version:</strong> ${permissions.Version}<br>`;
+            if (Array.isArray(permissions.Statement)) {
+                output += `<strong>Statements:</strong><br>`;
+                output += permissions.Statement.map(statement => `
                     <div style="margin-left: 20px;">
                         <strong>Effect:</strong> ${statement.Effect}<br>
                         ${statement.Action ? `<strong>Action:</strong> ${Array.isArray(statement.Action) ? statement.Action.join(', ') : statement.Action}<br>` : ''}
                         ${statement.NotAction ? `<strong>NotAction:</strong> ${Array.isArray(statement.NotAction) ? statement.NotAction.join(', ') : statement.NotAction}<br>` : ''}
                         <strong>Resource:</strong> ${statement.Resource}
                     </div>
-                `).join('<hr>')}
-            </div>
-        `;
-    } else {
-        return `<div>${JSON.stringify(permissions)}</div>`;
+                `).join('<hr>');
+            } else if (typeof permissions.Statement === 'object') {
+                output += `<strong>Statement:</strong><br>
+                    <div style="margin-left: 20px;">
+                        <strong>Effect:</strong> ${permissions.Statement.Effect}<br>
+                        ${permissions.Statement.Action ? `<strong>Action:</strong> ${Array.isArray(permissions.Statement.Action) ? permissions.Statement.Action.join(', ') : permissions.Statement.Action}<br>` : ''}
+                        ${permissions.Statement.NotAction ? `<strong>NotAction:</strong> ${Array.isArray(permissions.Statement.NotAction) ? permissions.Statement.NotAction.join(', ') : permissions.Statement.NotAction}<br>` : ''}
+                        <strong>Resource:</strong> ${permissions.Statement.Resource}
+                    </div>`;
+            }
+            output += '</div>';
+            return output;
+        } else {
+            return `<div>${JSON.stringify(permissions)}</div>`;
+        }
+    } catch (error) {
+        console.error('Error formatting permissions:', error);
+        console.log('Permissions object:', permissions);
+        return '<div>Error formatting permissions. Check console for details.</div>';
     }
 }
 
