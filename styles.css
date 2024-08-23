@@ -19,17 +19,23 @@ h1 {
     margin-bottom: 20px;
 }
 
-button {
+#provider-buttons button {
     background-color: #3700b3;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, opacity 0.3s;
+    opacity: 0.6;
 }
 
-button:hover {
+#provider-buttons button:hover {
     background-color: #6200ee;
+}
+
+#provider-buttons button.active {
+    background-color: #6200ee;
+    opacity: 1;
 }
 
 input[type="text"], input[type="date"] {

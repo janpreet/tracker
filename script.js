@@ -82,8 +82,16 @@ function formatGCPPermissions(permissions) {
     return output;
 }
 
+function setActiveButton(provider) {
+    document.querySelectorAll('#provider-buttons button').forEach(button => {
+        button.classList.remove('active');
+    });
+    document.getElementById(`${provider}-button`).classList.add('active');
+}
+
 async function loadComparison(provider, date = null) {
     currentProvider = provider;
+    setActiveButton(provider);
     const resultsDiv = document.getElementById('comparison-results');
     const lastSnapshotSpan = document.getElementById('last-snapshot-date');
     resultsDiv.innerHTML = 'Loading...';
@@ -153,11 +161,45 @@ function togglePermissions(index) {
 function filterRoles() {
     const searchTerm = document.getElementById('role-search').value.toLowerCase();
     const filteredRoles = allRoles.filter(role => {
-        const roleName = role.PolicyName || role.RoleName || role.name;
-        return roleName.toLowerCase().includes(searchTerm);
+        const roleName = (role.PolicyName || role.RoleName || role.name || '').toLowerCase();
+        if (roleName.includes(searchTerm)) return true;
+
+        if (role.PolicyDocument && role.PolicyDocument.Statement) {
+            const statements = Array.isArray(role.PolicyDocument.Statement) 
+                ? role.PolicyDocument.Statement 
+                : [role.PolicyDocument.Statement];
+            return statements.some(statement => 
+                (statement.Action && searchInArray(statement.Action, searchTerm)) ||
+                (statement.NotAction && searchInArray(statement.NotAction, searchTerm)) ||
+                (statement.Resource && searchInArray(statement.Resource, searchTerm))
+            );
+        }
+
+        if (role.Permissions) {
+            return role.Permissions.some(perm =>
+                searchInArray(perm.actions, searchTerm) ||
+                searchInArray(perm.not_actions, searchTerm) ||
+                searchInArray(perm.data_actions, searchTerm) ||
+                searchInArray(perm.not_data_actions, searchTerm)
+            );
+        }
+
+        if (role.includedPermissions) {
+            return searchInArray(role.includedPermissions, searchTerm);
+        }
+
+        return false;
     });
     displayRoles(filteredRoles);
 }
+
+function searchInArray(arr, term) {
+    if (!arr) return false;
+    if (typeof arr === 'string') return arr.toLowerCase().includes(term);
+    if (Array.isArray(arr)) return arr.some(item => item.toLowerCase().includes(term));
+    return false;
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     loadComparison('aws');
