@@ -25,9 +25,15 @@ jobs:
         run: |
           python scripts/fetch_aws_permissions.py
           python scripts/compare_permissions.py
-      - name: Commit and push if changed
+      - name: Copy files to deploy directory
         run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git add .
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update cloud permissions" && git push)
+          mkdir deploy
+          cp src/index.html deploy/
+          cp src/styles.css deploy/
+          cp src/script.js deploy/
+          cp -R src/snapshots deploy/
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./deploy
