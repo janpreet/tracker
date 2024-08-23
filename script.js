@@ -70,13 +70,13 @@ function formatAzurePermissions(permissions) {
 
 function formatGCPPermissions(permissions) {
     let output = `<div class="policy">
-        <div><strong>Role Name:</strong> ${permissions.name}</div>
-        <div><strong>Title:</strong> ${permissions.title}</div>
-        <div><strong>Description:</strong> ${permissions.description}</div>
+        <div><strong>Role Name:</strong> ${permissions.RoleName}</div>
+        <div><strong>Title:</strong> ${permissions.RoleTitle}</div>
+        <div><strong>Description:</strong> ${permissions.Description}</div>
         <div><strong>Included Permissions:</strong></div>
         <ul>`;
     
-    output += permissions.includedPermissions.sort().map(perm => `<li>${perm}</li>`).join('');
+    output += permissions.IncludedPermissions.sort().map(perm => `<li>${perm}</li>`).join('');
     output += '</ul></div>';
     
     return output;
