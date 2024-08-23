@@ -42,6 +42,8 @@ def fetch_gcp_permissions():
             json.dump(detailed_roles, f, indent=2)
         with open('snapshots/gcp/gcp_permissions_latest.json', 'w') as f:
             json.dump(detailed_roles, f, indent=2)
+        with open('snapshots/gcp/gcp_last_snapshot.txt', 'w') as f:
+            f.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
         print(f"Roles data successfully written to {filename} and 'snapshots/gcp/gcp_permissions_latest.json'")
 

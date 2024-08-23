@@ -30,6 +30,8 @@ def fetch_aws_permissions():
         json.dump(detailed_policies, f, indent=2)
     with open('snapshots/aws/aws_permissions_latest.json', 'w') as f:
         json.dump(detailed_policies, f, indent=2)
+    with open('snapshots/aws/aws_last_snapshot.txt', 'w') as f:
+        f.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
 if __name__ == "__main__":
     fetch_aws_permissions()

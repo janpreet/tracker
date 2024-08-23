@@ -31,6 +31,8 @@ def fetch_azure_permissions():
         json.dump(role_definitions, f, indent=2)
     with open('snapshots/azure/azure_permissions_latest.json', 'w') as f:
         json.dump(role_definitions, f, indent=2)
+    with open('snapshots/azure/azure_last_snapshot.txt', 'w') as f:
+        f.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
 if __name__ == "__main__":
     fetch_azure_permissions()

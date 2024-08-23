@@ -113,13 +113,20 @@ async function loadComparison(provider, date = null) {
         });
         displayRoles(allRoles);
 
-        const lastModified = new Date(response.headers.get('last-modified'));
-        lastSnapshotSpan.textContent = lastModified.toLocaleString();
+        // Load the snapshot time from the timestamp file
+        const timestampResponse = await fetch(`./snapshots/${provider}/${provider}_last_snapshot.txt`);
+        if (timestampResponse.ok) {
+            const timestamp = await timestampResponse.text();
+            lastSnapshotSpan.textContent = timestamp;
+        } else {
+            console.error('Error loading timestamp file.');
+        }
     } catch (error) {
         console.error('Error:', error);
         resultsDiv.textContent = 'Error loading data. Please check the console for more information.';
     }
 }
+
 
 function displayRoles(roles) {
     const resultsDiv = document.getElementById('comparison-results');
