@@ -1,6 +1,7 @@
 import boto3
 import json
 from datetime import datetime
+import os
 
 def fetch_aws_permissions():
     iam = boto3.client('iam')
@@ -20,6 +21,8 @@ def fetch_aws_permissions():
             'PolicyName': policy['PolicyName'],
             'PolicyDocument': policy_version['PolicyVersion']['Document']
         })
+    
+    os.makedirs('src/snapshots/aws', exist_ok=True)
     
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     filename = f'src/snapshots/aws/aws_permissions_{timestamp}.json'
