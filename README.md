@@ -1,6 +1,6 @@
 # Cloud Permissions Tracker
 
-Cloud Permissions Tracker is a tool designed to monitor and compare permissions across multiple cloud providers (AWS, Azure, GCP) over time. It is part of the Kado ecosystem, enhancing infrastructure management capabilities.
+Cloud Permissions Tracker is a tool designed to monitor and compare permissions across multiple cloud providers (AWS, Azure, GCP) over time. It is part of the [Kado ecosystem](https://github.com/janpreet/kado), enhancing infrastructure management capabilities.
 
 ## Table of Contents
 
