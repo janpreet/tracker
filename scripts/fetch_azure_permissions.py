@@ -20,11 +20,11 @@ def fetch_azure_permissions():
         role_definitions.append({
             'RoleName': role.role_name,
             'Description': role.description,
-            'Permissions': [perm.to_dict() for perm in role.permissions]
+            'Permissions': [perm.as_dict() for perm in role.permissions]
         })
 
     os.makedirs('snapshots/azure', exist_ok=True)
-
+    
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     filename = f'snapshots/azure/azure_permissions_{timestamp}.json'
     with open(filename, 'w') as f:
