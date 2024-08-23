@@ -37,6 +37,8 @@ def fetch_gcp_permissions():
     filename = f'snapshots/gcp/gcp_permissions_{timestamp}.json'
     with open(filename, 'w') as f:
         json.dump(roles, f, indent=2)
+    with open('snapshots/gcp/gcp_permissions_latest.json', 'w') as f:
+        json.dump(roles, f, indent=2)
 
 if __name__ == "__main__":
     fetch_gcp_permissions()

@@ -29,7 +29,8 @@ def compare_permissions():
         for policy in previous_data:
             if policy not in latest_data:
                 changes.append(f"Removed: {policy['PolicyName']}")
-
+        if not changes:
+            changes = latest_data
         comparison_results[provider] = changes
 
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")

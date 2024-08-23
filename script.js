@@ -3,7 +3,7 @@ async function loadComparison(provider) {
     resultsDiv.innerHTML = 'Loading...';
 
     try {
-        const response = await fetch('./snapshots/comparison_latest.json');
+        const response = await fetch(`./snapshots/${provider}/${provider}_permissions_latest.json`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -11,16 +11,16 @@ async function loadComparison(provider) {
         
         resultsDiv.innerHTML = '';
 
-        if (data[provider] && data[provider].length > 0) {
+        if (data && data.length > 0) {
             const list = document.createElement('ul');
-            data[provider].forEach(change => {
-                const item = document.createElement('li');
-                item.textContent = change;
-                list.appendChild(item);
+            data.forEach(role => {
+                const li = document.createElement('li');
+                li.textContent = `Role: ${role.RoleName || role.name}`;
+                list.appendChild(li);
             });
             resultsDiv.appendChild(list);
         } else {
-            resultsDiv.textContent = 'No changes detected for ' + provider;
+            resultsDiv.textContent = 'No data available for ' + provider;
         }
     } catch (error) {
         console.error('Error:', error);
@@ -31,3 +31,7 @@ async function loadComparison(provider) {
 document.addEventListener('DOMContentLoaded', () => {
     loadComparison('aws');
 });
+
+document.getElementById('aws-button').addEventListener('click', () => loadComparison('aws'));
+document.getElementById('azure-button').addEventListener('click', () => loadComparison('azure'));
+document.getElementById('gcp-button').addEventListener('click', () => loadComparison('gcp'));
