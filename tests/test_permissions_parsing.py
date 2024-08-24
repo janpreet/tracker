@@ -15,7 +15,7 @@ def test_gcp_permissions_parsing():
         ]
     }
 
-    from scripts.fetch_gcp_permissions import formatGCPPermissions
+    from fetch_gcp_permissions import formatGCPPermissions
     formatted_output = formatGCPPermissions(gcp_role)
     
     assert "Role Name: roles/editor" in formatted_output, "GCP role name formatting failed"
@@ -36,7 +36,7 @@ def test_aws_permissions_parsing():
         }
     }
 
-    from scripts.fetch_aws_permissions import formatAWSPermissions
+    from fetch_aws_permissions import formatAWSPermissions
     formatted_output = formatAWSPermissions(aws_policy)
     
     assert "Policy Name: AdministratorAccess" in formatted_output, "AWS policy name formatting failed"
@@ -56,7 +56,7 @@ def test_azure_permissions_parsing():
         ]
     }
 
-    from scripts.fetch_azure_permissions import formatAzurePermissions
+    from fetch_azure_permissions import formatAzurePermissions
     formatted_output = formatAzurePermissions(azure_role)
     
     assert "Role Name: Contributor" in formatted_output, "Azure role name formatting failed"
