@@ -1,4 +1,5 @@
 import pytest
+import os
 from azure.identity import DefaultAzureCredential
 from azure.mgmt.authorization import AuthorizationManagementClient
 

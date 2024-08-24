@@ -1,4 +1,5 @@
 import pytest
+import os
 
 def test_gcp_permissions_parsing():
     gcp_role = {
