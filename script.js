@@ -131,18 +131,18 @@ async function loadComparison(provider, date) {
     resultsDiv.innerHTML = 'Loading...';
 
     try {
-        const response = await fetch(`./snapshots/${provider}/`);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        const indexResponse = await fetch(`./snapshots/${provider}/${provider}_snapshots_index.json`);
+        if (!indexResponse.ok) {
+            throw new Error(`HTTP error! status: ${indexResponse.status}`);
         }
-        const fileList = await response.text();
+        const indexData = await indexResponse.json();
 
-        const regex = new RegExp(`${provider}_permissions_${date.replace(/-/g, '')}(\\d{6})\\.json`);
-        const matches = fileList.match(regex);
+        const dateStr = date.replace(/-/g, '');
+        const matchingSnapshots = indexData.snapshots.filter(snapshot => snapshot.startsWith(`${provider}_permissions_${dateStr}`));
 
-        if (matches && matches.length > 0) {
-            const latestMatch = matches.sort().pop();
-            const comparisonResponse = await fetch(`./snapshots/${provider}/${latestMatch}`);
+        if (matchingSnapshots.length > 0) {
+            const latestSnapshot = matchingSnapshots.sort().pop();
+            const comparisonResponse = await fetch(`./snapshots/${provider}/${latestSnapshot}`);
             if (!comparisonResponse.ok) {
                 throw new Error(`HTTP error! status: ${comparisonResponse.status}`);
             }
@@ -177,6 +177,7 @@ async function loadComparison(provider, date) {
         resultsDiv.textContent = 'Error loading data. Please check the console for more information.';
     }
 }
+
 
 function compareSnapshots(latestData, comparisonData) {
     const changes = [];
