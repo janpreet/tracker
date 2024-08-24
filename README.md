@@ -1,4 +1,5 @@
-[![Update Cloud Permissions](https://github.com/janpreet/kado-permissions-tracker/actions/workflows/update.yaml/badge.svg)](https://github.com/janpreet/kado-permissions-tracker/actions/workflows/update.yaml)[![codecov](https://codecov.io/github/janpreet/kado-permissions-tracker/graph/badge.svg?token=Z4WUTLQLTV)](https://codecov.io/github/janpreet/kado-permissions-tracker)
+[![Update Cloud Permissions](https://github.com/janpreet/kado-permissions-tracker/actions/workflows/update.yaml/badge.svg)](https://github.com/janpreet/kado-permissions-tracker/actions/workflows/update.yaml)[![codecov](https://codecov.io/github/janpreet/kado-permissions-tracker/graph/badge.svg?token=Z4WUTLQLTV)](https://codecov.io/github/janpreet/kado-permissions-tracker)[![Known Vulnerabilities](https://snyk.io/test/github/janpreet/kado-permissions-tracker/badge.svg)](https://snyk.io/test/github/janpreet/kado-permissions-tracker)
+
 # Kado Permissions Tracker
 
 Kado Permissions Tracker is an advanced tool designed to monitor and compare permissions across multiple cloud providers—AWS, Azure, and Google Cloud Platform (GCP)—over time. As part of the [Kado ecosystem](https://github.com/janpreet/kado), it enhances your ability to manage and secure your cloud infrastructure by providing insights into permission changes and compliance with security policies.
