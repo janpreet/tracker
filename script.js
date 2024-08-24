@@ -76,11 +76,16 @@ function formatGCPPermissions(permissions) {
         <div><strong>Included Permissions:</strong></div>
         <ul>`;
     
-    output += permissions.IncludedPermissions.sort().map(perm => `<li>${perm}</li>`).join('');
+    if (Array.isArray(permissions.IncludedPermissions)) {
+        output += permissions.IncludedPermissions.sort().map(perm => `<li>${perm}</li>`).join('');
+    } else {
+        output += '<li>No permissions available</li>';
+    }
     output += '</ul></div>';
     
     return output;
 }
+
 
 function setActiveButton(provider) {
     document.querySelectorAll('#provider-buttons button').forEach(button => {
@@ -114,7 +119,9 @@ async function loadLatestSnapshot(provider) {
         const timestampResponse = await fetch(`./snapshots/${provider}/${provider}_last_snapshot.txt`);
         if (timestampResponse.ok) {
             const timestamp = await timestampResponse.text();
-            lastSnapshotSpan.textContent = timestamp;
+            let date = new Date(timestamp.trim() + ' UTC');
+            let estDate = date.toLocaleString('en-US', { timeZone: 'America/New_York' });
+            lastSnapshotSpan.textContent = estDate;
         } else {
             console.error('Error loading timestamp file.');
         }
