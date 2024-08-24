@@ -32,7 +32,6 @@ jobs:
           python scripts/fetch_aws_permissions.py
           python scripts/fetch_azure_permissions.py
           python scripts/fetch_gcp_permissions.py
-          python scripts/compare_permissions.py
       - name: Commit and push if changed
         run: |
           git config --global user.name 'GitHub Action'
