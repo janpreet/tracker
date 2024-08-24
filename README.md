@@ -1,13 +1,12 @@
-# Cloud Permissions Tracker
+# Kado Permissions Tracker
 
-Cloud Permissions Tracker is a tool designed to monitor and compare permissions across multiple cloud providers (AWS, Azure, GCP) over time. It is part of the [Kado ecosystem](https://github.com/janpreet/kado), enhancing infrastructure management capabilities.
+Kado Permissions Tracker is an advanced tool designed to monitor and compare permissions across multiple cloud providers—AWS, Azure, and Google Cloud Platform (GCP)—over time. As part of the [Kado ecosystem](https://github.com/janpreet/kado), it enhances your ability to manage and secure your cloud infrastructure by providing insights into permission changes and compliance with security policies.
 
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Features](#features)
 - [Benefits](#benefits)
-- [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Integration with Kado](#integration-with-kado)
@@ -16,64 +15,65 @@ Cloud Permissions Tracker is a tool designed to monitor and compare permissions 
 
 ## Introduction
 
-Cloud Permissions Tracker provides a comprehensive solution for tracking and analyzing cloud permissions across different providers. By offering snapshots of permissions over time, it allows users to monitor changes and ensure compliance with security policies.
+Kado Permissions Tracker offers a comprehensive solution for tracking and analyzing cloud permissions across different providers. By capturing snapshots of permissions over time, it allows users to monitor changes, identify potential security risks, and ensure compliance with established security policies.
 
 ## Features
 
-- Track permissions for AWS, Azure, and Google Cloud Platform
-- Compare permissions across different time snapshots
-- Search functionality for roles and permissions
-- Dark-themed user interface for comfortable viewing
-- Expandable/collapsible view of detailed permissions
-- Responsive design for various screen sizes
+- **Multi-Cloud Support:** Track and analyze permissions for AWS, Azure, and Google Cloud Platform.
+- **Snapshot Comparison:** Compare permissions across different time snapshots to identify changes.
+- **Search and Filter:** Easily search for specific roles or permissions within each provider.
+- **Dark/Light Theme Toggle:** A user-friendly interface with a dark and light theme toggle for comfortable viewing.
+- **Expandable/Collapsible Views:** Expand or collapse detailed permission views for easier navigation.
+- **Responsive Design:** Optimized for various screen sizes, ensuring usability on all devices.
 
 ## Benefits
 
-- **Change Tracking**: Easily identify any modifications to predefined cloud roles and permissions over time.
-- **Security Compliance**: Ensure that your cloud permissions remain consistent with your security policies.
-- **Cross-Provider Visibility**: Get a unified view of permissions across multiple cloud providers.
-- **Historical Analysis**: Review how permissions have evolved, helping in audit and compliance processes.
+- **Change Tracking:** Detect modifications to cloud roles and permissions over time, allowing for proactive security management.
+- **Security Compliance:** Ensure that your cloud permissions remain consistent with your organization's security policies, helping to prevent unauthorized access.
+- **Cross-Provider Visibility:** Gain a unified view of permissions across AWS, Azure, and GCP, making it easier to manage multi-cloud environments.
+- **Historical Analysis:** Review how permissions have evolved over time, assisting in audit, compliance, and forensic analysis.
 
 ## Usage
 
-This tool will fetch the latest permissions daily and update the webpage.
+Kado Permissions Tracker automatically fetches and updates the latest permissions daily.
 
 To view the permissions:
 
-1. Visit https://janpreet.github.io/cloud-permissions-tracker/.
+1. Visit the live site at [Kado Permissions Tracker](https://janpreet.github.io/kado-permissions-tracker/).
 2. Use the cloud provider buttons to switch between AWS, Azure, and GCP.
-3. Use the search bar to filter roles or permissions.
-4. Click on roles to expand/collapse detailed permission information.
+3. Utilize the search bar to filter specific roles or permissions.
+4. Click on roles to expand or collapse detailed permission information.
+5. Use the theme toggle in the top-right corner to switch between dark and light modes.
 
 ## Configuration
 
 Key configuration files include:
 
-- `scripts/fetch_aws_permissions.py`: Script to fetch AWS permissions.
-- `scripts/fetch_azure_permissions.py`: Script to fetch Azure permissions.
-- `scripts/fetch_gcp_permissions.py`: Script to fetch GCP permissions.
-- `index.html`: Main page of the web interface.
-- `styles.css`: Styles for the web interface.
-- `script.js`: JavaScript for the web interface functionality.
+- `scripts/fetch_aws_permissions.py`: Fetches and processes AWS permissions.
+- `scripts/fetch_azure_permissions.py`: Fetches and processes Azure permissions.
+- `scripts/fetch_gcp_permissions.py`: Fetches and processes GCP permissions.
+- `index.html`: The main page of the web interface.
+- `styles.css`: Styles for the web interface, including theme customization.
+- `script.js`: JavaScript functionality for the web interface, including search, expand/collapse, and theme toggle features.
 
 ## Integration with Kado
 
-Cloud Permissions Tracker is part of the Kado ecosystem, a suite of tools designed for comprehensive infrastructure management. While it can be used standalone, it integrates seamlessly with other Kado components to provide enhanced visibility and control over your infrastructure:
+Kado Permissions Tracker is an integral component of the Kado ecosystem, a suite of tools designed to provide comprehensive infrastructure management. It works seamlessly with other Kado tools to offer enhanced visibility and control over your cloud infrastructure:
 
-- Use in conjunction with Kado's configuration management to ensure permissions align with your infrastructure setup.
-- Leverage Kado's templating system to dynamically update tracked permissions based on your infrastructure changes.
-- Combine with Kado's policy enforcement to automatically validate permission changes against your defined policies.
+- **Configuration Management:** Ensure that your cloud permissions are always in sync with your infrastructure setup by integrating with Kado’s configuration management tools.
+- **Dynamic Updates:** Utilize Kado’s templating system to dynamically adjust tracked permissions based on changes to your infrastructure.
+- **Policy Enforcement:** Combine with Kado’s policy enforcement capabilities to automatically validate and enforce permission changes according to your security policies.
 
 ## Contributing
 
-Contributions to Cloud Permissions Tracker are welcome! Please follow these steps:
+Contributions to Kado Permissions Tracker are welcome! Whether you're fixing bugs, adding new features, or improving documentation, your input is valuable. Please follow these steps to contribute:
 
 1. Fork the repository.
-2. Create a new branch for your feature.
-3. Commit your changes.
-4. Push to your fork and submit a pull request.
+2. Create a new branch for your feature or bugfix.
+3. Commit your changes with clear and descriptive messages.
+4. Push your branch to your fork and submit a pull request.
 
-Please ensure your code adheres to the project's coding standards and include tests for new features.
+Please ensure that your contributions adhere to the project’s coding standards and include tests where applicable.
 
 ## License
 
