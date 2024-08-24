@@ -1,9 +1,10 @@
 pytest
 boto3
-azure-identity
 azure-mgmt-authorization
 google-auth
 google-auth-oauthlib
 google-auth-httplib2
 google-api-python-client
-
+requests==2.32.2
+azure-identity==1.16.1
+zipp==3.19.1
