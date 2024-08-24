@@ -89,7 +89,7 @@ function setActiveButton(provider) {
     document.getElementById(`${provider}-button`).classList.add('active');
 }
 
-async function loadComparison(provider, date = null) {
+async function loadLatestSnapshot(provider) {
     currentProvider = provider;
     setActiveButton(provider);
     const resultsDiv = document.getElementById('comparison-results');
@@ -97,55 +97,19 @@ async function loadComparison(provider, date = null) {
     resultsDiv.innerHTML = 'Loading...';
 
     try {
-        let filename;
-        if (date) {
-            const response = await fetch(`./snapshots/${provider}/`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const fileList = await response.text();
-
-            const regex = new RegExp(`${provider}_permissions_${date.replace(/-/g, '')}(\\d{6})\\.json`);
-            const matches = fileList.match(regex);
-
-            if (matches && matches.length > 0) {
-                const latestMatch = matches.sort().pop();
-                filename = latestMatch;
-            } else {
-                resultsDiv.textContent = 'No snapshot found for the selected date.';
-                return;
-            }
-        } else {
-            filename = `${provider}_permissions_latest.json`;
-        }
-
-        const response = await fetch(`./snapshots/${provider}/${filename}`);
+        const response = await fetch(`./snapshots/${provider}/${provider}_permissions_latest.json`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const data = await response.json();
-        const latestDataResponse = await fetch(`./snapshots/${provider}/${provider}_permissions_latest.json`);
 
-        if (!latestDataResponse.ok) {
-            throw new Error(`HTTP error! status: ${latestDataResponse.status}`);
-        }
-
-        const latestData = await latestDataResponse.json();
-
-        const comparisonResults = compareSnapshots(latestData, data);
-
-        allRoles = comparisonResults.sort((a, b) => {
+        allRoles = data.sort((a, b) => {
             const nameA = a.PolicyName || a.RoleName || a.name;
             const nameB = b.PolicyName || b.RoleName || b.name;
             return nameA.localeCompare(nameB);
         });
-
-        if (allRoles.length > 0) {
-            displayRoles(allRoles);
-        } else {
-            resultsDiv.textContent = 'No changes found between the snapshots.';
-        }
+        displayRoles(allRoles);
 
         const timestampResponse = await fetch(`./snapshots/${provider}/${provider}_last_snapshot.txt`);
         if (timestampResponse.ok) {
@@ -153,6 +117,60 @@ async function loadComparison(provider, date = null) {
             lastSnapshotSpan.textContent = timestamp;
         } else {
             console.error('Error loading timestamp file.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        resultsDiv.textContent = 'Error loading data. Please check the console for more information.';
+    }
+}
+
+async function loadComparison(provider, date) {
+    currentProvider = provider;
+    setActiveButton(provider);
+    const resultsDiv = document.getElementById('comparison-results');
+    resultsDiv.innerHTML = 'Loading...';
+
+    try {
+        const response = await fetch(`./snapshots/${provider}/`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const fileList = await response.text();
+
+        const regex = new RegExp(`${provider}_permissions_${date.replace(/-/g, '')}(\\d{6})\\.json`);
+        const matches = fileList.match(regex);
+
+        if (matches && matches.length > 0) {
+            const latestMatch = matches.sort().pop();
+            const comparisonResponse = await fetch(`./snapshots/${provider}/${latestMatch}`);
+            if (!comparisonResponse.ok) {
+                throw new Error(`HTTP error! status: ${comparisonResponse.status}`);
+            }
+
+            const comparisonData = await comparisonResponse.json();
+            const latestDataResponse = await fetch(`./snapshots/${provider}/${provider}_permissions_latest.json`);
+
+            if (!latestDataResponse.ok) {
+                throw new Error(`HTTP error! status: ${latestDataResponse.status}`);
+            }
+
+            const latestData = await latestDataResponse.json();
+
+            const comparisonResults = compareSnapshots(latestData, comparisonData);
+
+            allRoles = comparisonResults.sort((a, b) => {
+                const nameA = a.PolicyName || a.RoleName || a.name;
+                const nameB = b.PolicyName || b.RoleName || b.name;
+                return nameA.localeCompare(nameB);
+            });
+
+            if (allRoles.length > 0) {
+                displayRoles(allRoles);
+            } else {
+                resultsDiv.textContent = 'No changes found between the snapshots.';
+            }
+        } else {
+            resultsDiv.textContent = 'No snapshot found for the selected date.';
         }
     } catch (error) {
         console.error('Error:', error);
@@ -277,13 +295,12 @@ function searchInArray(arr, term) {
     return false;
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
-    loadComparison('aws');
+    loadLatestSnapshot('aws');
 
-    document.getElementById('aws-button').addEventListener('click', () => loadComparison('aws'));
-    document.getElementById('azure-button').addEventListener('click', () => loadComparison('azure'));
-    document.getElementById('gcp-button').addEventListener('click', () => loadComparison('gcp'));
+    document.getElementById('aws-button').addEventListener('click', () => loadLatestSnapshot('aws'));
+    document.getElementById('azure-button').addEventListener('click', () => loadLatestSnapshot('azure'));
+    document.getElementById('gcp-button').addEventListener('click', () => loadLatestSnapshot('gcp'));
 
     document.getElementById('compare-button').addEventListener('click', () => {
         const date = document.getElementById('snapshot-date').value;
