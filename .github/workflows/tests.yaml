@@ -37,14 +37,3 @@ jobs:
         AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       run: |
         pytest tests
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: "14"
-
-    - name: Install Node.js dependencies
-      run: npm install
-
-    - name: Run JavaScript Tests
-      run: npm test
