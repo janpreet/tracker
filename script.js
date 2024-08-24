@@ -350,11 +350,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (body.classList.contains('dark')) {
             body.classList.remove('dark');
             body.classList.add('light');
-            themeToggleButton.innerHTML = '<i class="fas fa-sun"></i>';
+            themeToggleButton.innerHTML = 'Light';
         } else {
             body.classList.remove('light');
             body.classList.add('dark');
-            themeToggleButton.innerHTML = '<i class="fas fa-moon"></i>';
+            themeToggleButton.innerHTML = 'Dark';
         }
     });
 
