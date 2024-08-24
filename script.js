@@ -306,18 +306,89 @@ function searchInArray(arr, term) {
 document.addEventListener('DOMContentLoaded', () => {
     loadLatestSnapshot('aws');
 
-    document.getElementById('aws-button').addEventListener('click', () => loadLatestSnapshot('aws'));
-    document.getElementById('azure-button').addEventListener('click', () => loadLatestSnapshot('azure'));
-    document.getElementById('gcp-button').addEventListener('click', () => loadLatestSnapshot('gcp'));
+    document.getElementById('aws-button').addEventListener('click', () => {
+        resetButtons();
+        document.getElementById('aws-button').classList.add('active');
+        showSnapshotView();
+        loadLatestSnapshot('aws');
+    });
+    document.getElementById('azure-button').addEventListener('click', () => {
+        resetButtons();
+        document.getElementById('azure-button').classList.add('active');
+        showSnapshotView();
+        loadLatestSnapshot('azure');
+    });
+    document.getElementById('gcp-button').addEventListener('click', () => {
+        resetButtons();
+        document.getElementById('gcp-button').classList.add('active');
+        showSnapshotView();
+        loadLatestSnapshot('gcp');
+    });
 
     document.getElementById('compare-button').addEventListener('click', () => {
         const date = document.getElementById('snapshot-date').value;
         if (date) {
+            showSnapshotView();
             loadComparison(currentProvider, date);
         } else {
             alert('Please select a date to compare.');
         }
     });
 
+    document.getElementById('clear-button').addEventListener('click', () => {
+        document.getElementById('role-search').value = '';
+        document.getElementById('snapshot-date').value = '';
+        showSnapshotView();
+        loadLatestSnapshot(currentProvider);
+    });
+
     document.getElementById('role-search').addEventListener('input', filterRoles);
+
+    const themeToggleButton = document.getElementById('theme-toggle');
+    const body = document.body;
+    themeToggleButton.addEventListener('click', () => {
+        if (body.classList.contains('dark')) {
+            body.classList.remove('dark');
+            body.classList.add('light');
+            themeToggleButton.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            body.classList.remove('light');
+            body.classList.add('dark');
+            themeToggleButton.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+    });
+
+    const aboutToggleButton = document.getElementById('about-toggle');
+    aboutToggleButton.addEventListener('click', () => {
+        if (aboutToggleButton.classList.contains('active')) {
+            resetButtons();
+            document.getElementById('aws-button').classList.add('active');
+            showSnapshotView();
+            loadLatestSnapshot('aws');
+        } else {
+            resetButtons();
+            aboutToggleButton.classList.add('active');
+            showAboutPage();
+        }
+    });
+
+    function showSnapshotView() {
+        document.getElementById('about-page').style.display = 'none';
+        document.getElementById('comparison-results').style.display = 'block';
+        document.getElementById('last-snapshot').style.display = 'block';
+    }
+
+    function showAboutPage() {
+        document.getElementById('about-page').style.display = 'block';
+        document.getElementById('comparison-results').style.display = 'none';
+        document.getElementById('last-snapshot').style.display = 'none';
+    }
+
+    function resetButtons() {
+        document.querySelectorAll('button').forEach(button => {
+            button.classList.remove('active');
+        });
+    }
 });
+
+

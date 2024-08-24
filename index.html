@@ -5,9 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cloud Permissions Tracker</title>
     <link rel="stylesheet" href="./styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
-<body>
-    <h1>Cloud Permissions Tracker</h1>
+<body class="dark">
+    <div id="theme-toggle-container">
+        <button id="theme-toggle"><i class="fas fa-moon"></i></button>
+        <button id="about-toggle">About</button>
+    </div>    
+    <h1>Kado Permissions Tracker</h1>
     <div id="provider-buttons">
         <button id="aws-button" class="active">AWS</button>
         <button id="azure-button">Azure</button>
@@ -20,9 +25,16 @@
         <label for="snapshot-date">Compare with date:</label>
         <input type="date" id="snapshot-date">
         <button id="compare-button">Compare</button>
+        <button id="clear-button">Clear</button>
     </div>
     <div id="last-snapshot">Last snapshot: <span id="last-snapshot-date"></span></div>
     <div id="comparison-results"></div>
+
+    <div id="about-page">
+        <h2>About Kado Permissions Tracker</h2>
+        <p>Ever wondered what changed on the default roles you were using for your workflows? Use Kado Permissions Tracker to stay up to date with the latest changes.</p>
+        <p>This tool is part of the Kado ecosystem, created by Janpreet Singh (<a href="https://janpreet.com" target="_blank">janpreet.com</a>). Reach out if you have any questions, and be sure to read the README on the GitHub repository for more information.</p>
+    </div>
     <script src="./script.js"></script>
 </body>
 </html>
