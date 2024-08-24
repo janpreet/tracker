@@ -97,23 +97,56 @@ async function loadComparison(provider, date = null) {
     resultsDiv.innerHTML = 'Loading...';
 
     try {
-        const filename = date 
-            ? `${provider}_permissions_${date.replace(/-/g, '')}.json`
-            : `${provider}_permissions_latest.json`;
+        let filename;
+        if (date) {
+            const response = await fetch(`./snapshots/${provider}/`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const fileList = await response.text();
+
+            const regex = new RegExp(`${provider}_permissions_${date.replace(/-/g, '')}(\\d{6})\\.json`);
+            const matches = fileList.match(regex);
+
+            if (matches && matches.length > 0) {
+                const latestMatch = matches.sort().pop();
+                filename = latestMatch;
+            } else {
+                resultsDiv.textContent = 'No snapshot found for the selected date.';
+                return;
+            }
+        } else {
+            filename = `${provider}_permissions_latest.json`;
+        }
+
         const response = await fetch(`./snapshots/${provider}/${filename}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
+
         const data = await response.json();
-        
-        allRoles = data.sort((a, b) => {
+        const latestDataResponse = await fetch(`./snapshots/${provider}/${provider}_permissions_latest.json`);
+
+        if (!latestDataResponse.ok) {
+            throw new Error(`HTTP error! status: ${latestDataResponse.status}`);
+        }
+
+        const latestData = await latestDataResponse.json();
+
+        const comparisonResults = compareSnapshots(latestData, data);
+
+        allRoles = comparisonResults.sort((a, b) => {
             const nameA = a.PolicyName || a.RoleName || a.name;
             const nameB = b.PolicyName || b.RoleName || b.name;
             return nameA.localeCompare(nameB);
         });
-        displayRoles(allRoles);
 
-        // Load the snapshot time from the timestamp file
+        if (allRoles.length > 0) {
+            displayRoles(allRoles);
+        } else {
+            resultsDiv.textContent = 'No changes found between the snapshots.';
+        }
+
         const timestampResponse = await fetch(`./snapshots/${provider}/${provider}_last_snapshot.txt`);
         if (timestampResponse.ok) {
             const timestamp = await timestampResponse.text();
@@ -127,6 +160,43 @@ async function loadComparison(provider, date = null) {
     }
 }
 
+function compareSnapshots(latestData, comparisonData) {
+    const changes = [];
+
+    latestData.forEach(latestRole => {
+        const comparisonRole = comparisonData.find(role => role.RoleName === latestRole.RoleName);
+        if (comparisonRole) {
+            const permissionDifference = getPermissionDifference(latestRole, comparisonRole);
+            if (permissionDifference) {
+                changes.push(permissionDifference);
+            }
+        } else {
+            changes.push(latestRole);
+        }
+    });
+
+    return changes;
+}
+
+function getPermissionDifference(latestRole, comparisonRole) {
+    const latestPermissions = new Set(latestRole.IncludedPermissions);
+    const comparisonPermissions = new Set(comparisonRole.IncludedPermissions);
+
+    const addedPermissions = [...latestPermissions].filter(permission => !comparisonPermissions.has(permission));
+    const removedPermissions = [...comparisonPermissions].filter(permission => !latestPermissions.has(permission));
+
+    if (addedPermissions.length > 0 || removedPermissions.length > 0) {
+        return {
+            RoleName: latestRole.RoleName,
+            RoleTitle: latestRole.RoleTitle,
+            Description: latestRole.Description,
+            AddedPermissions: addedPermissions,
+            RemovedPermissions: removedPermissions,
+        };
+    }
+
+    return null;
+}
 
 function displayRoles(roles) {
     const resultsDiv = document.getElementById('comparison-results');
