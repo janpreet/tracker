@@ -121,6 +121,7 @@ li {
     padding: 5px;
     background-color: var(--primary-color);
     border-radius: 3px;
+    color: #000;
 }
 
 .expand-icon {
@@ -169,4 +170,12 @@ body.light {
     --input-background-color: #ffffff;
     --card-background-color: #ffffff;
     --border-color: #ccc;
+}
+
+body.light .role-header {
+    color: #000;
+}
+
+body.dark .role-header {
+    color: #000;
 }
