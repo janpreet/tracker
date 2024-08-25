@@ -25,6 +25,7 @@ jobs:
           git checkout -B update-cloud-permissions
       - name: Pull latest changes from remote
         run: |
+          git config pull.rebase false
           git pull origin update-cloud-permissions || true
       - name: Fetch and compare permissions
         env:
@@ -44,10 +45,10 @@ jobs:
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
-          git pull --rebase origin update-cloud-permissions
-          git push --force origin update-cloud-permissions
           git add .
           git commit -m "Update cloud permissions"
+          git pull --rebase origin update-cloud-permissions
+          git push update-cloud-permissions
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
