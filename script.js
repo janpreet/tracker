@@ -119,9 +119,7 @@ async function loadLatestSnapshot(provider) {
         const timestampResponse = await fetch(`./snapshots/${provider}/${provider}_last_snapshot.txt`);
         if (timestampResponse.ok) {
             const timestamp = await timestampResponse.text();
-            let date = parseCustomDate(timestamp.trim());
-            let estDate = date.toLocaleString('en-US', { timeZone: 'America/New_York' });
-            lastSnapshotSpan.textContent = estDate;
+            lastSnapshotSpan.textContent = timestamp.trim();
         } else {
             console.error('Error loading timestamp file.');
         }
@@ -129,17 +127,6 @@ async function loadLatestSnapshot(provider) {
         console.error('Error:', error);
         resultsDiv.textContent = 'Error loading data. Please check the console for more information.';
     }
-}
-
-function parseCustomDate(dateString) {
-    const year = dateString.slice(0, 4);
-    const month = dateString.slice(4, 6) - 1;
-    const day = dateString.slice(6, 8);
-    const hours = dateString.slice(8, 10);
-    const minutes = dateString.slice(10, 12);
-    const seconds = dateString.slice(12, 14);
-
-    return new Date(year, month, day, hours, minutes, seconds);
 }
 
 async function loadComparison(provider, date) {
@@ -361,11 +348,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (body.classList.contains('dark')) {
             body.classList.remove('dark');
             body.classList.add('light');
-            themeToggleButton.innerHTML = 'Light';
+            themeToggleButton.innerHTML = 'Dark';
         } else {
             body.classList.remove('light');
             body.classList.add('dark');
-            themeToggleButton.innerHTML = 'Dark';
+            themeToggleButton.innerHTML = 'Light';
         }
     });
 
