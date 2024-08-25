@@ -119,7 +119,7 @@ async function loadLatestSnapshot(provider) {
         const timestampResponse = await fetch(`./snapshots/${provider}/${provider}_last_snapshot.txt`);
         if (timestampResponse.ok) {
             const timestamp = await timestampResponse.text();
-            let date = new Date(timestamp.trim() + ' UTC');
+            let date = parseCustomDate(timestamp.trim());
             let estDate = date.toLocaleString('en-US', { timeZone: 'America/New_York' });
             lastSnapshotSpan.textContent = estDate;
         } else {
@@ -129,6 +129,17 @@ async function loadLatestSnapshot(provider) {
         console.error('Error:', error);
         resultsDiv.textContent = 'Error loading data. Please check the console for more information.';
     }
+}
+
+function parseCustomDate(dateString) {
+    const year = dateString.slice(0, 4);
+    const month = dateString.slice(4, 6) - 1;
+    const day = dateString.slice(6, 8);
+    const hours = dateString.slice(8, 10);
+    const minutes = dateString.slice(10, 12);
+    const seconds = dateString.slice(12, 14);
+
+    return new Date(year, month, day, hours, minutes, seconds);
 }
 
 async function loadComparison(provider, date) {
