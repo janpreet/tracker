@@ -14496,7 +14496,7 @@
   },
   {
     "RoleName": "Service Fabric Managed Cluster Contributor",
-    "Description": "Lets you managed your Service Fabric Managed Cluster resources",
+    "Description": "Lets you manage your Service Fabric Managed Cluster resource.",
     "Permissions": [
       {
         "actions": [
@@ -14586,6 +14586,24 @@
           "Microsoft.PowerBI/tenants/delete",
           "Microsoft.PowerBI/tenants/write",
           "Microsoft.PowerBI/tenants/workspaces/write"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Service Fabric Cluster Contributor",
+    "Description": "Lets you manage your Service Fabric Cluster. Only provides Service Fabric permissions. You will need additional permissions to manage the cluster's underlying resources.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.ServiceFabric/clusters/*",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.Resources/deployments/*",
+          "Microsoft.Resources/subscriptions/resourceGroups/read"
         ],
         "not_actions": [],
         "data_actions": [],
