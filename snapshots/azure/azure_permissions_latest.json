@@ -7939,11 +7939,13 @@
     ]
   },
   {
-    "RoleName": "Azure Arc ScVmm Private Cloud User",
-    "Description": "Azure Arc ScVmm Private Cloud User has permissions to use the ScVmm resources to deploy VMs.",
+    "RoleName": "Azure Arc ScVmm VM Contributor",
+    "Description": "Arc ScVmm VM Contributor has permissions to perform all VM actions.",
     "Permissions": [
       {
         "actions": [
+          "microsoft.scvmm/virtualmachines/*",
+          "microsoft.scvmm/virtualMachineInstances/*",
           "Microsoft.Insights/AlertRules/Write",
           "Microsoft.Insights/AlertRules/Delete",
           "Microsoft.Insights/AlertRules/Read",
@@ -7969,15 +7971,37 @@
           "Microsoft.Resources/subscriptions/read",
           "Microsoft.Resources/subscriptions/resourceGroups/read",
           "Microsoft.Resources/subscriptions/operationresults/read",
-          "microsoft.scvmm/virtualnetworks/join/action",
-          "microsoft.scvmm/virtualnetworks/Read",
-          "microsoft.scvmm/virtualmachinetemplates/clone/action",
-          "microsoft.scvmm/virtualmachinetemplates/Read",
-          "microsoft.scvmm/clouds/deploy/action",
-          "microsoft.scvmm/clouds/Read",
           "Microsoft.ExtendedLocation/customLocations/Read",
           "Microsoft.ExtendedLocation/customLocations/deploy/action",
-          "Microsoft.ExtendedLocation/customLocations/enabledresourcetypes/read"
+          "Microsoft.HybridCompute/machines/read",
+          "Microsoft.HybridCompute/machines/write",
+          "Microsoft.HybridCompute/machines/delete",
+          "Microsoft.HybridCompute/machines/UpgradeExtensions/action",
+          "Microsoft.HybridCompute/machines/assessPatches/action",
+          "Microsoft.HybridCompute/machines/installPatches/action",
+          "Microsoft.HybridCompute/machines/extensions/read",
+          "Microsoft.HybridCompute/machines/extensions/write",
+          "Microsoft.HybridCompute/machines/extensions/delete",
+          "Microsoft.HybridCompute/operations/read",
+          "Microsoft.HybridCompute/locations/operationresults/read",
+          "Microsoft.HybridCompute/locations/operationstatus/read",
+          "Microsoft.HybridCompute/machines/patchAssessmentResults/read",
+          "Microsoft.HybridCompute/machines/patchAssessmentResults/softwarePatches/read",
+          "Microsoft.HybridCompute/machines/patchInstallationResults/read",
+          "Microsoft.HybridCompute/machines/patchInstallationResults/softwarePatches/read",
+          "Microsoft.HybridCompute/locations/updateCenterOperationResults/read",
+          "Microsoft.HybridCompute/machines/hybridIdentityMetadata/read",
+          "Microsoft.HybridCompute/osType/agentVersions/read",
+          "Microsoft.HybridCompute/osType/agentVersions/latest/read",
+          "Microsoft.HybridCompute/machines/runcommands/read",
+          "Microsoft.HybridCompute/machines/runcommands/write",
+          "Microsoft.HybridCompute/machines/runcommands/delete",
+          "Microsoft.HybridCompute/machines/licenseProfiles/read",
+          "Microsoft.HybridCompute/machines/licenseProfiles/write",
+          "Microsoft.HybridCompute/machines/licenseProfiles/delete",
+          "Microsoft.HybridCompute/licenses/read",
+          "Microsoft.HybridCompute/licenses/write",
+          "Microsoft.HybridCompute/licenses/delete"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -7986,13 +8010,12 @@
     ]
   },
   {
-    "RoleName": "Azure Arc ScVmm VM Contributor",
-    "Description": "Arc ScVmm VM Contributor has permissions to perform all VM actions.",
+    "RoleName": "Azure Arc ScVmm Administrator role",
+    "Description": "Arc ScVmm VM Administrator has permissions to perform all ScVmm actions.",
     "Permissions": [
       {
         "actions": [
-          "microsoft.scvmm/virtualmachines/*",
-          "microsoft.scvmm/virtualMachineInstances/*",
+          "Microsoft.ScVmm/*",
           "Microsoft.Insights/AlertRules/Write",
           "Microsoft.Insights/AlertRules/Delete",
           "Microsoft.Insights/AlertRules/Read",
@@ -8100,12 +8123,11 @@
     ]
   },
   {
-    "RoleName": "Azure Arc ScVmm Administrator role",
-    "Description": "Arc ScVmm VM Administrator has permissions to perform all ScVmm actions.",
+    "RoleName": "Azure Arc ScVmm Private Cloud User",
+    "Description": "Azure Arc ScVmm Private Cloud User has permissions to use the ScVmm resources to deploy VMs.",
     "Permissions": [
       {
         "actions": [
-          "Microsoft.ScVmm/*",
           "Microsoft.Insights/AlertRules/Write",
           "Microsoft.Insights/AlertRules/Delete",
           "Microsoft.Insights/AlertRules/Read",
@@ -8131,37 +8153,58 @@
           "Microsoft.Resources/subscriptions/read",
           "Microsoft.Resources/subscriptions/resourceGroups/read",
           "Microsoft.Resources/subscriptions/operationresults/read",
+          "microsoft.scvmm/virtualnetworks/join/action",
+          "microsoft.scvmm/virtualnetworks/Read",
+          "microsoft.scvmm/virtualmachinetemplates/clone/action",
+          "microsoft.scvmm/virtualmachinetemplates/Read",
+          "microsoft.scvmm/clouds/deploy/action",
+          "microsoft.scvmm/clouds/Read",
           "Microsoft.ExtendedLocation/customLocations/Read",
           "Microsoft.ExtendedLocation/customLocations/deploy/action",
-          "Microsoft.HybridCompute/machines/read",
-          "Microsoft.HybridCompute/machines/write",
-          "Microsoft.HybridCompute/machines/delete",
-          "Microsoft.HybridCompute/machines/UpgradeExtensions/action",
-          "Microsoft.HybridCompute/machines/assessPatches/action",
-          "Microsoft.HybridCompute/machines/installPatches/action",
-          "Microsoft.HybridCompute/machines/extensions/read",
-          "Microsoft.HybridCompute/machines/extensions/write",
-          "Microsoft.HybridCompute/machines/extensions/delete",
-          "Microsoft.HybridCompute/operations/read",
-          "Microsoft.HybridCompute/locations/operationresults/read",
-          "Microsoft.HybridCompute/locations/operationstatus/read",
-          "Microsoft.HybridCompute/machines/patchAssessmentResults/read",
-          "Microsoft.HybridCompute/machines/patchAssessmentResults/softwarePatches/read",
-          "Microsoft.HybridCompute/machines/patchInstallationResults/read",
-          "Microsoft.HybridCompute/machines/patchInstallationResults/softwarePatches/read",
-          "Microsoft.HybridCompute/locations/updateCenterOperationResults/read",
-          "Microsoft.HybridCompute/machines/hybridIdentityMetadata/read",
-          "Microsoft.HybridCompute/osType/agentVersions/read",
-          "Microsoft.HybridCompute/osType/agentVersions/latest/read",
-          "Microsoft.HybridCompute/machines/runcommands/read",
-          "Microsoft.HybridCompute/machines/runcommands/write",
-          "Microsoft.HybridCompute/machines/runcommands/delete",
-          "Microsoft.HybridCompute/machines/licenseProfiles/read",
-          "Microsoft.HybridCompute/machines/licenseProfiles/write",
-          "Microsoft.HybridCompute/machines/licenseProfiles/delete",
-          "Microsoft.HybridCompute/licenses/read",
-          "Microsoft.HybridCompute/licenses/write",
-          "Microsoft.HybridCompute/licenses/delete"
+          "Microsoft.ExtendedLocation/customLocations/enabledresourcetypes/read"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "HDInsight on AKS Cluster Pool Admin",
+    "Description": "Can read, create, modify and delete HDInsight on AKS cluster pools and create clusters",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.HDInsight/clusterPools/clusters/read",
+          "Microsoft.HDInsight/clusterPools/clusters/write",
+          "Microsoft.HDInsight/clusterPools/delete",
+          "Microsoft.HDInsight/clusterPools/read",
+          "Microsoft.HDInsight/clusterPools/write",
+          "Microsoft.HDInsight/clusterpools/availableupgrades/read",
+          "Microsoft.HDInsight/clusterpools/upgrade/action",
+          "Microsoft.HDInsight/clusterPools/upgradehistories/read",
+          "Microsoft.ResourceHealth/availabilityStatuses/read",
+          "Microsoft.Resources/deployments/operations/read",
+          "Microsoft.Resources/deployments/validate/action",
+          "Microsoft.Resources/deployments/*/read",
+          "Microsoft.Resources/deployments/read",
+          "Microsoft.Resources/deployments/write",
+          "Microsoft.Resources/deployments/exportTemplate/action",
+          "Microsoft.Resources/deployments/validate/action",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Resources/subscriptions/operationresults/read",
+          "Microsoft.Insights/AlertRules/Write",
+          "Microsoft.Insights/AlertRules/Delete",
+          "Microsoft.Insights/AlertRules/Read",
+          "Microsoft.Insights/AlertRules/Activated/Action",
+          "Microsoft.Insights/AlertRules/Resolved/Action",
+          "Microsoft.Insights/AlertRules/Throttled/Action",
+          "Microsoft.Insights/AlertRules/Incidents/Read",
+          "Microsoft.Insights/metrics/read",
+          "Microsoft.Insights/logs/read"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -8197,49 +8240,6 @@
           "Microsoft.Resources/deployments/validate/action",
           "Microsoft.Resources/deployments/write",
           "Microsoft.Resources/deployments/exportTemplate/action",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.Resources/subscriptions/operationresults/read",
-          "Microsoft.Insights/AlertRules/Write",
-          "Microsoft.Insights/AlertRules/Delete",
-          "Microsoft.Insights/AlertRules/Read",
-          "Microsoft.Insights/AlertRules/Activated/Action",
-          "Microsoft.Insights/AlertRules/Resolved/Action",
-          "Microsoft.Insights/AlertRules/Throttled/Action",
-          "Microsoft.Insights/AlertRules/Incidents/Read",
-          "Microsoft.Insights/metrics/read",
-          "Microsoft.Insights/logs/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "HDInsight on AKS Cluster Pool Admin",
-    "Description": "Can read, create, modify and delete HDInsight on AKS cluster pools and create clusters",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Authorization/*/read",
-          "Microsoft.HDInsight/clusterPools/clusters/read",
-          "Microsoft.HDInsight/clusterPools/clusters/write",
-          "Microsoft.HDInsight/clusterPools/delete",
-          "Microsoft.HDInsight/clusterPools/read",
-          "Microsoft.HDInsight/clusterPools/write",
-          "Microsoft.HDInsight/clusterpools/availableupgrades/read",
-          "Microsoft.HDInsight/clusterpools/upgrade/action",
-          "Microsoft.HDInsight/clusterPools/upgradehistories/read",
-          "Microsoft.ResourceHealth/availabilityStatuses/read",
-          "Microsoft.Resources/deployments/operations/read",
-          "Microsoft.Resources/deployments/validate/action",
-          "Microsoft.Resources/deployments/*/read",
-          "Microsoft.Resources/deployments/read",
-          "Microsoft.Resources/deployments/write",
-          "Microsoft.Resources/deployments/exportTemplate/action",
-          "Microsoft.Resources/deployments/validate/action",
           "Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read",
           "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
           "Microsoft.Resources/subscriptions/resourceGroups/read",
@@ -8398,33 +8398,6 @@
     ]
   },
   {
-    "RoleName": "Desktop Virtualization Power On Contributor",
-    "Description": "Provide permission to the Azure Virtual Desktop Resource Provider to start virtual machines.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Compute/virtualMachines/start/action",
-          "Microsoft.Compute/virtualMachines/read",
-          "Microsoft.Compute/virtualMachines/instanceView/read",
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Insights/alertRules/*",
-          "Microsoft.Resources/deployments/*",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.HybridCompute/machines/read",
-          "Microsoft.HybridCompute/operations/read",
-          "Microsoft.HybridCompute/locations/operationresults/read",
-          "Microsoft.HybridCompute/locations/operationstatus/read",
-          "Microsoft.AzureStackHCI/virtualMachineInstances/read",
-          "Microsoft.AzureStackHCI/virtualMachineInstances/start/action",
-          "Microsoft.AzureStackHCI/operations/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
     "RoleName": "Desktop Virtualization Virtual Machine Contributor",
     "Description": "This role is in preview and subject to change. Provide permission to the Azure Virtual Desktop Resource Provider to create, delete, update, start, and stop virtual machines.",
     "Permissions": [
@@ -8547,14 +8520,25 @@
     ]
   },
   {
-    "RoleName": "Access Review Operator Service Role",
-    "Description": "Lets you grant Access Review System app permissions to discover and revoke access as needed by the access review process.",
+    "RoleName": "Desktop Virtualization Power On Contributor",
+    "Description": "Provide permission to the Azure Virtual Desktop Resource Provider to start virtual machines.",
     "Permissions": [
       {
         "actions": [
-          "Microsoft.Authorization/roleAssignments/read",
-          "Microsoft.Authorization/roleAssignments/delete",
-          "Microsoft.Management/getEntities/action"
+          "Microsoft.Compute/virtualMachines/start/action",
+          "Microsoft.Compute/virtualMachines/read",
+          "Microsoft.Compute/virtualMachines/instanceView/read",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.Resources/deployments/*",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.HybridCompute/machines/read",
+          "Microsoft.HybridCompute/operations/read",
+          "Microsoft.HybridCompute/locations/operationresults/read",
+          "Microsoft.HybridCompute/locations/operationstatus/read",
+          "Microsoft.AzureStackHCI/virtualMachineInstances/read",
+          "Microsoft.AzureStackHCI/virtualMachineInstances/start/action",
+          "Microsoft.AzureStackHCI/operations/read"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -8572,6 +8556,22 @@
           "Microsoft.Authorization/roleDefinitions/read",
           "Microsoft.ElasticSan/elasticSans/volumeGroups/*",
           "Microsoft.ElasticSan/locations/asyncoperations/read"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Access Review Operator Service Role",
+    "Description": "Lets you grant Access Review System app permissions to discover and revoke access as needed by the access review process.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/roleAssignments/read",
+          "Microsoft.Authorization/roleAssignments/delete",
+          "Microsoft.Management/getEntities/action"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -8625,6 +8625,118 @@
         "data_actions": [
           "Microsoft.Monitor/accounts/data/metrics/read"
         ],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Azure Kubernetes Fleet Manager RBAC Writer",
+    "Description": "Grants read/write access to most Kubernetes resources within a namespace in the fleet-managed hub cluster. This role does not allow viewing or modifying roles or role bindings. However, this role allows accessing Secrets as any ServiceAccount in the namespace, so it can be used to gain the API access levels of any ServiceAccount in the namespace.\u00a0 Applying this role at cluster scope will give access across all namespaces.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Resources/subscriptions/operationresults/read",
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.ContainerService/fleets/read",
+          "Microsoft.ContainerService/fleets/listCredentials/action"
+        ],
+        "not_actions": [],
+        "data_actions": [
+          "Microsoft.ContainerService/fleets/apps/controllerrevisions/read",
+          "Microsoft.ContainerService/fleets/apps/daemonsets/*",
+          "Microsoft.ContainerService/fleets/apps/deployments/*",
+          "Microsoft.ContainerService/fleets/apps/statefulsets/*",
+          "Microsoft.ContainerService/fleets/autoscaling/horizontalpodautoscalers/*",
+          "Microsoft.ContainerService/fleets/batch/cronjobs/*",
+          "Microsoft.ContainerService/fleets/batch/jobs/*",
+          "Microsoft.ContainerService/fleets/configmaps/*",
+          "Microsoft.ContainerService/fleets/endpoints/*",
+          "Microsoft.ContainerService/fleets/events.k8s.io/events/read",
+          "Microsoft.ContainerService/fleets/events/read",
+          "Microsoft.ContainerService/fleets/extensions/daemonsets/*",
+          "Microsoft.ContainerService/fleets/extensions/deployments/*",
+          "Microsoft.ContainerService/fleets/extensions/ingresses/*",
+          "Microsoft.ContainerService/fleets/extensions/networkpolicies/*",
+          "Microsoft.ContainerService/fleets/limitranges/read",
+          "Microsoft.ContainerService/fleets/namespaces/read",
+          "Microsoft.ContainerService/fleets/networking.k8s.io/ingresses/*",
+          "Microsoft.ContainerService/fleets/networking.k8s.io/networkpolicies/*",
+          "Microsoft.ContainerService/fleets/persistentvolumeclaims/*",
+          "Microsoft.ContainerService/fleets/policy/poddisruptionbudgets/*",
+          "Microsoft.ContainerService/fleets/replicationcontrollers/*",
+          "Microsoft.ContainerService/fleets/replicationcontrollers/*",
+          "Microsoft.ContainerService/fleets/resourcequotas/read",
+          "Microsoft.ContainerService/fleets/secrets/*",
+          "Microsoft.ContainerService/fleets/serviceaccounts/*",
+          "Microsoft.ContainerService/fleets/services/*"
+        ],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Azure Kubernetes Fleet Manager RBAC Admin",
+    "Description": "Grants read/write access to Kubernetes resources within a namespace in the fleet-managed hub cluster - provides write permissions on most objects within a a namespace, with the exception of ResourceQuota object and the namespace object itself. Applying this role at cluster scope will give access across all namespaces.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Resources/subscriptions/operationresults/read",
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.ContainerService/fleets/read",
+          "Microsoft.ContainerService/fleets/listCredentials/action"
+        ],
+        "not_actions": [],
+        "data_actions": [
+          "Microsoft.ContainerService/fleets/apps/controllerrevisions/read",
+          "Microsoft.ContainerService/fleets/apps/daemonsets/*",
+          "Microsoft.ContainerService/fleets/apps/deployments/*",
+          "Microsoft.ContainerService/fleets/apps/statefulsets/*",
+          "Microsoft.ContainerService/fleets/authorization.k8s.io/localsubjectaccessreviews/write",
+          "Microsoft.ContainerService/fleets/autoscaling/horizontalpodautoscalers/*",
+          "Microsoft.ContainerService/fleets/batch/cronjobs/*",
+          "Microsoft.ContainerService/fleets/batch/jobs/*",
+          "Microsoft.ContainerService/fleets/configmaps/*",
+          "Microsoft.ContainerService/fleets/endpoints/*",
+          "Microsoft.ContainerService/fleets/events.k8s.io/events/read",
+          "Microsoft.ContainerService/fleets/events/read",
+          "Microsoft.ContainerService/fleets/extensions/daemonsets/*",
+          "Microsoft.ContainerService/fleets/extensions/deployments/*",
+          "Microsoft.ContainerService/fleets/extensions/ingresses/*",
+          "Microsoft.ContainerService/fleets/extensions/networkpolicies/*",
+          "Microsoft.ContainerService/fleets/limitranges/read",
+          "Microsoft.ContainerService/fleets/namespaces/read",
+          "Microsoft.ContainerService/fleets/networking.k8s.io/ingresses/*",
+          "Microsoft.ContainerService/fleets/networking.k8s.io/networkpolicies/*",
+          "Microsoft.ContainerService/fleets/persistentvolumeclaims/*",
+          "Microsoft.ContainerService/fleets/policy/poddisruptionbudgets/*",
+          "Microsoft.ContainerService/fleets/rbac.authorization.k8s.io/rolebindings/*",
+          "Microsoft.ContainerService/fleets/rbac.authorization.k8s.io/roles/*",
+          "Microsoft.ContainerService/fleets/replicationcontrollers/*",
+          "Microsoft.ContainerService/fleets/replicationcontrollers/*",
+          "Microsoft.ContainerService/fleets/resourcequotas/read",
+          "Microsoft.ContainerService/fleets/secrets/*",
+          "Microsoft.ContainerService/fleets/serviceaccounts/*",
+          "Microsoft.ContainerService/fleets/services/*"
+        ],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Azure Kubernetes Fleet Manager Contributor Role",
+    "Description": "Grants read/write access to Azure resources provided by Azure Kubernetes Fleet Manager, including fleets, fleet members, fleet update strategies, fleet update runs, etc.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.ContainerService/fleets/*",
+          "Microsoft.Resources/deployments/*"
+        ],
+        "not_actions": [],
+        "data_actions": [],
         "not_data_actions": []
       }
     ]
@@ -8697,118 +8809,6 @@
     ]
   },
   {
-    "RoleName": "Azure Kubernetes Fleet Manager RBAC Admin",
-    "Description": "Grants read/write access to Kubernetes resources within a namespace in the fleet-managed hub cluster - provides write permissions on most objects within a a namespace, with the exception of ResourceQuota object and the namespace object itself. Applying this role at cluster scope will give access across all namespaces.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Resources/subscriptions/operationresults/read",
-          "Microsoft.Resources/subscriptions/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.ContainerService/fleets/read",
-          "Microsoft.ContainerService/fleets/listCredentials/action"
-        ],
-        "not_actions": [],
-        "data_actions": [
-          "Microsoft.ContainerService/fleets/apps/controllerrevisions/read",
-          "Microsoft.ContainerService/fleets/apps/daemonsets/*",
-          "Microsoft.ContainerService/fleets/apps/deployments/*",
-          "Microsoft.ContainerService/fleets/apps/statefulsets/*",
-          "Microsoft.ContainerService/fleets/authorization.k8s.io/localsubjectaccessreviews/write",
-          "Microsoft.ContainerService/fleets/autoscaling/horizontalpodautoscalers/*",
-          "Microsoft.ContainerService/fleets/batch/cronjobs/*",
-          "Microsoft.ContainerService/fleets/batch/jobs/*",
-          "Microsoft.ContainerService/fleets/configmaps/*",
-          "Microsoft.ContainerService/fleets/endpoints/*",
-          "Microsoft.ContainerService/fleets/events.k8s.io/events/read",
-          "Microsoft.ContainerService/fleets/events/read",
-          "Microsoft.ContainerService/fleets/extensions/daemonsets/*",
-          "Microsoft.ContainerService/fleets/extensions/deployments/*",
-          "Microsoft.ContainerService/fleets/extensions/ingresses/*",
-          "Microsoft.ContainerService/fleets/extensions/networkpolicies/*",
-          "Microsoft.ContainerService/fleets/limitranges/read",
-          "Microsoft.ContainerService/fleets/namespaces/read",
-          "Microsoft.ContainerService/fleets/networking.k8s.io/ingresses/*",
-          "Microsoft.ContainerService/fleets/networking.k8s.io/networkpolicies/*",
-          "Microsoft.ContainerService/fleets/persistentvolumeclaims/*",
-          "Microsoft.ContainerService/fleets/policy/poddisruptionbudgets/*",
-          "Microsoft.ContainerService/fleets/rbac.authorization.k8s.io/rolebindings/*",
-          "Microsoft.ContainerService/fleets/rbac.authorization.k8s.io/roles/*",
-          "Microsoft.ContainerService/fleets/replicationcontrollers/*",
-          "Microsoft.ContainerService/fleets/replicationcontrollers/*",
-          "Microsoft.ContainerService/fleets/resourcequotas/read",
-          "Microsoft.ContainerService/fleets/secrets/*",
-          "Microsoft.ContainerService/fleets/serviceaccounts/*",
-          "Microsoft.ContainerService/fleets/services/*"
-        ],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Azure Kubernetes Fleet Manager RBAC Writer",
-    "Description": "Grants read/write access to most Kubernetes resources within a namespace in the fleet-managed hub cluster. This role does not allow viewing or modifying roles or role bindings. However, this role allows accessing Secrets as any ServiceAccount in the namespace, so it can be used to gain the API access levels of any ServiceAccount in the namespace.\u00a0 Applying this role at cluster scope will give access across all namespaces.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Resources/subscriptions/operationresults/read",
-          "Microsoft.Resources/subscriptions/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.ContainerService/fleets/read",
-          "Microsoft.ContainerService/fleets/listCredentials/action"
-        ],
-        "not_actions": [],
-        "data_actions": [
-          "Microsoft.ContainerService/fleets/apps/controllerrevisions/read",
-          "Microsoft.ContainerService/fleets/apps/daemonsets/*",
-          "Microsoft.ContainerService/fleets/apps/deployments/*",
-          "Microsoft.ContainerService/fleets/apps/statefulsets/*",
-          "Microsoft.ContainerService/fleets/autoscaling/horizontalpodautoscalers/*",
-          "Microsoft.ContainerService/fleets/batch/cronjobs/*",
-          "Microsoft.ContainerService/fleets/batch/jobs/*",
-          "Microsoft.ContainerService/fleets/configmaps/*",
-          "Microsoft.ContainerService/fleets/endpoints/*",
-          "Microsoft.ContainerService/fleets/events.k8s.io/events/read",
-          "Microsoft.ContainerService/fleets/events/read",
-          "Microsoft.ContainerService/fleets/extensions/daemonsets/*",
-          "Microsoft.ContainerService/fleets/extensions/deployments/*",
-          "Microsoft.ContainerService/fleets/extensions/ingresses/*",
-          "Microsoft.ContainerService/fleets/extensions/networkpolicies/*",
-          "Microsoft.ContainerService/fleets/limitranges/read",
-          "Microsoft.ContainerService/fleets/namespaces/read",
-          "Microsoft.ContainerService/fleets/networking.k8s.io/ingresses/*",
-          "Microsoft.ContainerService/fleets/networking.k8s.io/networkpolicies/*",
-          "Microsoft.ContainerService/fleets/persistentvolumeclaims/*",
-          "Microsoft.ContainerService/fleets/policy/poddisruptionbudgets/*",
-          "Microsoft.ContainerService/fleets/replicationcontrollers/*",
-          "Microsoft.ContainerService/fleets/replicationcontrollers/*",
-          "Microsoft.ContainerService/fleets/resourcequotas/read",
-          "Microsoft.ContainerService/fleets/secrets/*",
-          "Microsoft.ContainerService/fleets/serviceaccounts/*",
-          "Microsoft.ContainerService/fleets/services/*"
-        ],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Azure Kubernetes Fleet Manager Contributor Role",
-    "Description": "Grants read/write access to Azure resources provided by Azure Kubernetes Fleet Manager, including fleets, fleet members, fleet update strategies, fleet update runs, etc.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.ContainerService/fleets/*",
-          "Microsoft.Resources/deployments/*"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
     "RoleName": "Kubernetes Namespace User",
     "Description": "Allows a user to read namespace resources and retrieve kubeconfig for the cluster",
     "Permissions": [
@@ -8860,20 +8860,6 @@
     ]
   },
   {
-    "RoleName": "Template Spec Reader",
-    "Description": "Allows read access to Template Specs at the assigned scope.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Resources/templateSpecs/*/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
     "RoleName": "Template Spec Contributor",
     "Description": "Allows full access to Template Spec operations at the assigned scope.",
     "Permissions": [
@@ -8883,6 +8869,20 @@
           "Microsoft.Authorization/*/read",
           "Microsoft.Resources/deployments/*",
           "Microsoft.Resources/subscriptions/resourceGroups/read"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Template Spec Reader",
+    "Description": "Allows read access to Template Specs at the assigned scope.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.Resources/templateSpecs/*/read"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -8992,62 +8992,6 @@
     ]
   },
   {
-    "RoleName": "Azure Center for SAP solutions reader",
-    "Description": "This role provides read access to all capabilities of Azure Center for SAP solutions.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Advisor/configurations/read",
-          "Microsoft.Advisor/recommendations/read",
-          "Microsoft.Workloads/sapvirtualInstances/*/read",
-          "Microsoft.Workloads/Locations/*/read",
-          "Microsoft.Workloads/Operations/read",
-          "Microsoft.Workloads/Locations/OperationStatuses/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.Insights/alertRules/read",
-          "Microsoft.Insights/metrics/read",
-          "Microsoft.Insights/metricDefinitions/read",
-          "Microsoft.Resources/deployments/read",
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Resources/subscriptions/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
-          "Microsoft.ResourceHealth/availabilityStatuses/read",
-          "Microsoft.Network/virtualNetworks/read",
-          "Microsoft.Network/virtualNetworks/providers/Microsoft.Insights/metricDefinitions/read",
-          "Microsoft.Network/virtualNetworks/subnets/read",
-          "Microsoft.Network/virtualNetworks/subnets/virtualMachines/read",
-          "Microsoft.Network/networkInterfaces/read",
-          "Microsoft.Network/networkInterfaces/ipconfigurations/read",
-          "Microsoft.Network/networkInterfaces/loadBalancers/read",
-          "Microsoft.Network/networkInterfaces/providers/Microsoft.Insights/metricDefinitions/read",
-          "Microsoft.Network/loadBalancers/read",
-          "Microsoft.Network/loadBalancers/backendAddressPools/read",
-          "Microsoft.Network/loadBalancers/frontendIPConfigurations/read",
-          "Microsoft.Network/loadBalancers/loadBalancingRules/read",
-          "Microsoft.Network/loadBalancers/inboundNatRules/read",
-          "Microsoft.Network/loadBalancers/providers/Microsoft.Insights/logDefinitions/read",
-          "Microsoft.Network/loadBalancers/networkInterfaces/read",
-          "Microsoft.Network/loadBalancers/outboundRules/read",
-          "Microsoft.Network/loadBalancers/virtualMachines/read",
-          "Microsoft.Network/loadBalancers/providers/Microsoft.Insights/metricDefinitions/read",
-          "Microsoft.Network/privateEndpoints/read",
-          "Microsoft.Storage/storageAccounts/read",
-          "Microsoft.Storage/storageAccounts/blobServices/read",
-          "Microsoft.Storage/storageAccounts/blobServices/containers/read",
-          "Microsoft.Storage/storageAccounts/fileServices/read",
-          "Microsoft.Storage/storageAccounts/fileServices/shares/read",
-          "Microsoft.Compute/virtualMachines/read",
-          "Microsoft.Compute/availabilitySets/read",
-          "Microsoft.Compute/virtualMachines/extensions/read",
-          "Microsoft.Compute/disks/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
     "RoleName": "Azure Center for SAP solutions service role",
     "Description": "Azure Center for SAP solutions service role - This role is intended to be used for providing the permissions to user assigned managed identity. Azure Center for SAP solutions will use this identity to deploy and manage SAP systems.",
     "Permissions": [
@@ -9108,6 +9052,62 @@
           "Microsoft.Compute/virtualMachines/extensions/delete",
           "Microsoft.Compute/disks/read",
           "Microsoft.Compute/disks/write"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Azure Center for SAP solutions reader",
+    "Description": "This role provides read access to all capabilities of Azure Center for SAP solutions.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.Advisor/configurations/read",
+          "Microsoft.Advisor/recommendations/read",
+          "Microsoft.Workloads/sapvirtualInstances/*/read",
+          "Microsoft.Workloads/Locations/*/read",
+          "Microsoft.Workloads/Operations/read",
+          "Microsoft.Workloads/Locations/OperationStatuses/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Insights/alertRules/read",
+          "Microsoft.Insights/metrics/read",
+          "Microsoft.Insights/metricDefinitions/read",
+          "Microsoft.Resources/deployments/read",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
+          "Microsoft.ResourceHealth/availabilityStatuses/read",
+          "Microsoft.Network/virtualNetworks/read",
+          "Microsoft.Network/virtualNetworks/providers/Microsoft.Insights/metricDefinitions/read",
+          "Microsoft.Network/virtualNetworks/subnets/read",
+          "Microsoft.Network/virtualNetworks/subnets/virtualMachines/read",
+          "Microsoft.Network/networkInterfaces/read",
+          "Microsoft.Network/networkInterfaces/ipconfigurations/read",
+          "Microsoft.Network/networkInterfaces/loadBalancers/read",
+          "Microsoft.Network/networkInterfaces/providers/Microsoft.Insights/metricDefinitions/read",
+          "Microsoft.Network/loadBalancers/read",
+          "Microsoft.Network/loadBalancers/backendAddressPools/read",
+          "Microsoft.Network/loadBalancers/frontendIPConfigurations/read",
+          "Microsoft.Network/loadBalancers/loadBalancingRules/read",
+          "Microsoft.Network/loadBalancers/inboundNatRules/read",
+          "Microsoft.Network/loadBalancers/providers/Microsoft.Insights/logDefinitions/read",
+          "Microsoft.Network/loadBalancers/networkInterfaces/read",
+          "Microsoft.Network/loadBalancers/outboundRules/read",
+          "Microsoft.Network/loadBalancers/virtualMachines/read",
+          "Microsoft.Network/loadBalancers/providers/Microsoft.Insights/metricDefinitions/read",
+          "Microsoft.Network/privateEndpoints/read",
+          "Microsoft.Storage/storageAccounts/read",
+          "Microsoft.Storage/storageAccounts/blobServices/read",
+          "Microsoft.Storage/storageAccounts/blobServices/containers/read",
+          "Microsoft.Storage/storageAccounts/fileServices/read",
+          "Microsoft.Storage/storageAccounts/fileServices/shares/read",
+          "Microsoft.Compute/virtualMachines/read",
+          "Microsoft.Compute/availabilitySets/read",
+          "Microsoft.Compute/virtualMachines/extensions/read",
+          "Microsoft.Compute/disks/read"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -9319,6 +9319,21 @@
     ]
   },
   {
+    "RoleName": "Azure Kubernetes Service Cluster Monitoring User",
+    "Description": "List cluster monitoring user credential action.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.ContainerService/managedClusters/listClusterMonitoringUserCredential/action",
+          "Microsoft.ContainerService/managedClusters/read"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
     "RoleName": "ContainerApp Reader",
     "Description": "View all containerapp resources, but does not allow you to make any changes.",
     "Permissions": [
@@ -9330,21 +9345,6 @@
           "Microsoft.Insights/alertRules/*",
           "Microsoft.Resources/deployments/*",
           "Microsoft.Resources/subscriptions/resourceGroups/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Azure Kubernetes Service Cluster Monitoring User",
-    "Description": "List cluster monitoring user credential action.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.ContainerService/managedClusters/listClusterMonitoringUserCredential/action",
-          "Microsoft.ContainerService/managedClusters/read"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -9603,6 +9603,30 @@
     ]
   },
   {
+    "RoleName": "Bayer Ag Powered Services CWUM Solution",
+    "Description": "Provide access to CWUM Solution by Bayer Ag Powered Services",
+    "Permissions": [
+      {
+        "actions": [],
+        "not_actions": [],
+        "data_actions": [
+          "Microsoft.AgFoodPlatform/farmBeats/parties/read",
+          "Microsoft.AgFoodPlatform/farmBeats/parties/boundaries/read",
+          "Microsoft.AgFoodPlatform/farmBeats/parties/boundaries/write",
+          "Microsoft.AgFoodPlatform/farmBeats/parties/farms/read",
+          "Microsoft.AgFoodPlatform/farmBeats/parties/farms/write",
+          "Microsoft.AgFoodPlatform/farmBeats/parties/fields/read",
+          "Microsoft.AgFoodPlatform/farmBeats/parties/fields/write",
+          "Microsoft.AgFoodPlatform/farmBeats/ingestionJobs/satelliteDataIngestionJobs/*",
+          "Microsoft.AgFoodPlatform/farmBeats/scenes/*",
+          "Microsoft.AgFoodPlatform/farmBeats/parties/models/resourceTypes/resources/insightAttachments/*",
+          "Microsoft.AgFoodPlatform/farmBeats/parties/models/resourceTypes/resources/insights/*"
+        ],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
     "RoleName": "SqlVM Migration Role",
     "Description": "Role for SqlVM migration",
     "Permissions": [
@@ -9642,30 +9666,6 @@
     ]
   },
   {
-    "RoleName": "Bayer Ag Powered Services CWUM Solution",
-    "Description": "Provide access to CWUM Solution by Bayer Ag Powered Services",
-    "Permissions": [
-      {
-        "actions": [],
-        "not_actions": [],
-        "data_actions": [
-          "Microsoft.AgFoodPlatform/farmBeats/parties/read",
-          "Microsoft.AgFoodPlatform/farmBeats/parties/boundaries/read",
-          "Microsoft.AgFoodPlatform/farmBeats/parties/boundaries/write",
-          "Microsoft.AgFoodPlatform/farmBeats/parties/farms/read",
-          "Microsoft.AgFoodPlatform/farmBeats/parties/farms/write",
-          "Microsoft.AgFoodPlatform/farmBeats/parties/fields/read",
-          "Microsoft.AgFoodPlatform/farmBeats/parties/fields/write",
-          "Microsoft.AgFoodPlatform/farmBeats/ingestionJobs/satelliteDataIngestionJobs/*",
-          "Microsoft.AgFoodPlatform/farmBeats/scenes/*",
-          "Microsoft.AgFoodPlatform/farmBeats/parties/models/resourceTypes/resources/insightAttachments/*",
-          "Microsoft.AgFoodPlatform/farmBeats/parties/models/resourceTypes/resources/insights/*"
-        ],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
     "RoleName": "Azure Front Door Domain Contributor",
     "Description": "For internal use within Azure. Can manage Azure Front Door domains, but can't grant access to other users.",
     "Permissions": [
@@ -9675,6 +9675,22 @@
           "Microsoft.Cdn/profiles/customdomains/read",
           "Microsoft.Cdn/profiles/customdomains/write",
           "Microsoft.Cdn/profiles/customdomains/delete",
+          "Microsoft.Resources/subscriptions/resourceGroups/read"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Azure Front Door Secret Reader",
+    "Description": "For internal use within Azure. Can view Azure Front Door secrets, but can't make changes.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.Cdn/operationresults/profileresults/secretresults/read",
+          "Microsoft.Cdn/profiles/secrets/read",
           "Microsoft.Resources/subscriptions/resourceGroups/read"
         ],
         "not_actions": [],
@@ -9710,82 +9726,6 @@
           "Microsoft.Cdn/operationresults/profileresults/customdomainresults/read",
           "Microsoft.Cdn/profiles/customdomains/read",
           "Microsoft.Resources/subscriptions/resourceGroups/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Azure Front Door Secret Reader",
-    "Description": "For internal use within Azure. Can view Azure Front Door secrets, but can't make changes.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Cdn/operationresults/profileresults/secretresults/read",
-          "Microsoft.Cdn/profiles/secrets/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "MySQL Backup And Export Operator",
-    "Description": "Grants full access to manage backup and export resources",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.DBforMySQL/flexibleServers/validateBackup/action",
-          "Microsoft.DBforMySQL/flexibleServers/backupAndExport/action",
-          "Microsoft.DBforMySQL/locations/operationResults/read",
-          "Microsoft.DBforMySQL/locations/azureAsyncOperation/read",
-          "Microsoft.Resources/subscriptions/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "LocalNGFirewallAdministrator role",
-    "Description": "Allows user to create, modify, describe, or delete NGFirewalls.",
-    "Permissions": [
-      {
-        "actions": [
-          "PaloAltoNetworks.Cloudngfw/firewalls/*",
-          "PaloAltoNetworks.Cloudngfw/localRulestacks/read",
-          "PaloAltoNetworks.Cloudngfw/globalRulestacks/read",
-          "PaloAltoNetworks.Cloudngfw/Locations/operationStatuses/read",
-          "Microsoft.OperationalInsights/workspaces/write",
-          "Microsoft.OperationalInsights/workspaces/sharedKeys/read",
-          "Microsoft.OperationalInsights/workspaces/read",
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Insights/alertRules/*",
-          "Microsoft.Insights/metrics/read",
-          "Microsoft.Insights/metricDefinitions/read",
-          "Microsoft.Resources/deployments/*",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.ResourceHealth/availabilityStatuses/read",
-          "Microsoft.Support/*",
-          "Microsoft.Network/virtualNetworks/read",
-          "Microsoft.Network/virtualNetworks/subnets/join/action",
-          "Microsoft.Network/publicIPAddresses/write",
-          "Microsoft.Network/publicIPAddresses/read",
-          "Microsoft.Network/publicIPAddresses/join/action",
-          "Microsoft.Network/networkVirtualAppliances/read",
-          "Microsoft.Network/networkVirtualAppliances/write",
-          "Microsoft.Network/networkVirtualAppliances/delete",
-          "Microsoft.Network/virtualHubs/read",
-          "Microsoft.Network/virtualWans/read",
-          "Microsoft.Network/virtualWans/virtualHubs/read",
-          "Microsoft.Network/networkSecurityGroups/read",
-          "Microsoft.Network/networkSecurityGroups/join/action"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -9903,6 +9843,66 @@
     ]
   },
   {
+    "RoleName": "MySQL Backup And Export Operator",
+    "Description": "Grants full access to manage backup and export resources",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.DBforMySQL/flexibleServers/validateBackup/action",
+          "Microsoft.DBforMySQL/flexibleServers/backupAndExport/action",
+          "Microsoft.DBforMySQL/locations/operationResults/read",
+          "Microsoft.DBforMySQL/locations/azureAsyncOperation/read",
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "LocalNGFirewallAdministrator role",
+    "Description": "Allows user to create, modify, describe, or delete NGFirewalls.",
+    "Permissions": [
+      {
+        "actions": [
+          "PaloAltoNetworks.Cloudngfw/firewalls/*",
+          "PaloAltoNetworks.Cloudngfw/localRulestacks/read",
+          "PaloAltoNetworks.Cloudngfw/globalRulestacks/read",
+          "PaloAltoNetworks.Cloudngfw/Locations/operationStatuses/read",
+          "Microsoft.OperationalInsights/workspaces/write",
+          "Microsoft.OperationalInsights/workspaces/sharedKeys/read",
+          "Microsoft.OperationalInsights/workspaces/read",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.Insights/metrics/read",
+          "Microsoft.Insights/metricDefinitions/read",
+          "Microsoft.Resources/deployments/*",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.ResourceHealth/availabilityStatuses/read",
+          "Microsoft.Support/*",
+          "Microsoft.Network/virtualNetworks/read",
+          "Microsoft.Network/virtualNetworks/subnets/join/action",
+          "Microsoft.Network/publicIPAddresses/write",
+          "Microsoft.Network/publicIPAddresses/read",
+          "Microsoft.Network/publicIPAddresses/join/action",
+          "Microsoft.Network/networkVirtualAppliances/read",
+          "Microsoft.Network/networkVirtualAppliances/write",
+          "Microsoft.Network/networkVirtualAppliances/delete",
+          "Microsoft.Network/virtualHubs/read",
+          "Microsoft.Network/virtualWans/read",
+          "Microsoft.Network/virtualWans/virtualHubs/read",
+          "Microsoft.Network/networkSecurityGroups/read",
+          "Microsoft.Network/networkSecurityGroups/join/action"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
     "RoleName": "LocalRulestacksAdministrator role",
     "Description": "Allows users to create, modify, describe, or delete Rulestacks.",
     "Permissions": [
@@ -9953,32 +9953,22 @@
     ]
   },
   {
-    "RoleName": "API Management Workspace Reader",
-    "Description": "Has read-only access to entities in the workspace. This role should be assigned on the workspace scope.",
+    "RoleName": "API Management Service Workspace API Product Manager",
+    "Description": "Has the same access as API Management Service Workspace API Developer as well as read access to users and write access to allow assigning users to groups. This role should be assigned on the service scope.",
     "Permissions": [
       {
         "actions": [
-          "Microsoft.ApiManagement/service/workspaces/*/read",
-          "Microsoft.Authorization/*/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "API Management Workspace API Product Manager",
-    "Description": "Has read access to entities in the workspace and read and write access to entities for publishing APIs. This role should be assigned on the workspace scope.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.ApiManagement/service/workspaces/*/read",
-          "Microsoft.ApiManagement/service/workspaces/products/*",
-          "Microsoft.ApiManagement/service/workspaces/subscriptions/*",
-          "Microsoft.ApiManagement/service/workspaces/groups/*",
-          "Microsoft.ApiManagement/service/workspaces/tags/*",
-          "Microsoft.ApiManagement/service/workspaces/notifications/*",
+          "Microsoft.ApiManagement/service/users/read",
+          "Microsoft.ApiManagement/service/tags/read",
+          "Microsoft.ApiManagement/service/tags/apiLinks/*",
+          "Microsoft.ApiManagement/service/tags/operationLinks/*",
+          "Microsoft.ApiManagement/service/tags/productLinks/*",
+          "Microsoft.ApiManagement/service/products/read",
+          "Microsoft.ApiManagement/service/products/apiLinks/*",
+          "Microsoft.ApiManagement/service/groups/read",
+          "Microsoft.ApiManagement/service/groups/users/*",
+          "Microsoft.ApiManagement/service/read",
+          "Microsoft.ApiManagement/service/authorizationServers/read",
           "Microsoft.Authorization/*/read"
         ],
         "not_actions": [],
@@ -10015,22 +10005,32 @@
     ]
   },
   {
-    "RoleName": "API Management Service Workspace API Product Manager",
-    "Description": "Has the same access as API Management Service Workspace API Developer as well as read access to users and write access to allow assigning users to groups. This role should be assigned on the service scope.",
+    "RoleName": "API Management Workspace Reader",
+    "Description": "Has read-only access to entities in the workspace. This role should be assigned on the workspace scope.",
     "Permissions": [
       {
         "actions": [
-          "Microsoft.ApiManagement/service/users/read",
-          "Microsoft.ApiManagement/service/tags/read",
-          "Microsoft.ApiManagement/service/tags/apiLinks/*",
-          "Microsoft.ApiManagement/service/tags/operationLinks/*",
-          "Microsoft.ApiManagement/service/tags/productLinks/*",
-          "Microsoft.ApiManagement/service/products/read",
-          "Microsoft.ApiManagement/service/products/apiLinks/*",
-          "Microsoft.ApiManagement/service/groups/read",
-          "Microsoft.ApiManagement/service/groups/users/*",
-          "Microsoft.ApiManagement/service/read",
-          "Microsoft.ApiManagement/service/authorizationServers/read",
+          "Microsoft.ApiManagement/service/workspaces/*/read",
+          "Microsoft.Authorization/*/read"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "API Management Workspace API Product Manager",
+    "Description": "Has read access to entities in the workspace and read and write access to entities for publishing APIs. This role should be assigned on the workspace scope.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.ApiManagement/service/workspaces/*/read",
+          "Microsoft.ApiManagement/service/workspaces/products/*",
+          "Microsoft.ApiManagement/service/workspaces/subscriptions/*",
+          "Microsoft.ApiManagement/service/workspaces/groups/*",
+          "Microsoft.ApiManagement/service/workspaces/tags/*",
+          "Microsoft.ApiManagement/service/workspaces/notifications/*",
           "Microsoft.Authorization/*/read"
         ],
         "not_actions": [],
@@ -10128,6 +10128,22 @@
     ]
   },
   {
+    "RoleName": "Windows365SubscriptionReader",
+    "Description": "Read subscriptions, images, azure firewalls. This role is used in Windows365 scenarios.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.Resources/subscriptions/operationresults/read",
+          "Microsoft.Authorization/*/read"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
     "RoleName": "Windows 365 Network Interface Contributor",
     "Description": "This role is used by Windows 365 to provision required network resources and join Microsoft-hosted VMs to network interfaces.",
     "Permissions": [
@@ -10156,14 +10172,12 @@
     ]
   },
   {
-    "RoleName": "Windows365SubscriptionReader",
-    "Description": "Read subscriptions, images, azure firewalls. This role is used in Windows365 scenarios.",
+    "RoleName": "App Compliance Automation Reader",
+    "Description": "Read, download the reports objects and related other resource objects.",
     "Permissions": [
       {
         "actions": [
-          "Microsoft.Resources/subscriptions/read",
-          "Microsoft.Resources/subscriptions/operationresults/read",
-          "Microsoft.Authorization/*/read"
+          "*/read"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -10204,20 +10218,6 @@
           "Microsoft.Security/automations/write",
           "Microsoft.Security/register/action",
           "Microsoft.Security/unregister/action",
-          "*/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "App Compliance Automation Reader",
-    "Description": "Read, download the reports objects and related other resource objects.",
-    "Permissions": [
-      {
-        "actions": [
           "*/read"
         ],
         "not_actions": [],
@@ -10316,6 +10316,21 @@
     ]
   },
   {
+    "RoleName": "Azure Machine Learning Workspace Connection Secrets Reader",
+    "Description": "Can list workspace connection secrets",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.MachineLearningServices/workspaces/connections/listsecrets/action",
+          "Microsoft.MachineLearningServices/workspaces/metadata/secrets/read"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
     "RoleName": "Procurement Contributor",
     "Description": "Lets you manage the procurement of products and services.",
     "Permissions": [
@@ -10359,16 +10374,16 @@
     ]
   },
   {
-    "RoleName": "Azure Machine Learning Workspace Connection Secrets Reader",
-    "Description": "Can list workspace connection secrets",
+    "RoleName": "Cognitive Search Serverless Data Contributor (Deprecated)",
+    "Description": "This role has been deprecated",
     "Permissions": [
       {
-        "actions": [
-          "Microsoft.MachineLearningServices/workspaces/connections/listsecrets/action",
-          "Microsoft.MachineLearningServices/workspaces/metadata/secrets/read"
-        ],
+        "actions": [],
         "not_actions": [],
-        "data_actions": [],
+        "data_actions": [
+          "Microsoft.CognitiveSearch/indexes/schema/*",
+          "Microsoft.CognitiveSearch/indexes/documents/*"
+        ],
         "not_data_actions": []
       }
     ]
@@ -10383,21 +10398,6 @@
         "data_actions": [
           "Microsoft.CognitiveSearch/indexes/schema/read",
           "Microsoft.CognitiveSearch/indexes/documents/read"
-        ],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Cognitive Search Serverless Data Contributor (Deprecated)",
-    "Description": "This role has been deprecated",
-    "Permissions": [
-      {
-        "actions": [],
-        "not_actions": [],
-        "data_actions": [
-          "Microsoft.CognitiveSearch/indexes/schema/*",
-          "Microsoft.CognitiveSearch/indexes/documents/*"
         ],
         "not_data_actions": []
       }
@@ -10629,26 +10629,6 @@
     ]
   },
   {
-    "RoleName": "Logic Apps Standard Reader (Preview)",
-    "Description": "You have read-only access to all resources in a Standard logic app and workflows, including the workflow runs and their history.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Insights/alertRules/*",
-          "Microsoft.Resources/deployments/operations/read",
-          "Microsoft.Resources/subscriptions/operationresults/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.Support/*",
-          "Microsoft.Web/*/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
     "RoleName": "Logic Apps Standard Developer (Preview)",
     "Description": "You can create and edit workflows, connections, and settings for a Standard logic app. You can't make changes outside the workflow scope.",
     "Permissions": [
@@ -10745,6 +10725,26 @@
     ]
   },
   {
+    "RoleName": "Logic Apps Standard Reader (Preview)",
+    "Description": "You have read-only access to all resources in a Standard logic app and workflows, including the workflow runs and their history.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.Resources/deployments/operations/read",
+          "Microsoft.Resources/subscriptions/operationresults/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Support/*",
+          "Microsoft.Web/*/read"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
     "RoleName": "IPAM Pool User",
     "Description": "Read IPAM Pools and child resources. Create and remove associations. This role is in preview and subject to change.",
     "Permissions": [
@@ -10797,6 +10797,31 @@
     ]
   },
   {
+    "RoleName": "Elastic SAN Volume Importer",
+    "Description": "Allows for Importing Elastic San Volume",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.ElasticSan/elasticSans/volumeGroups/*/read",
+          "Microsoft.ElasticSan/elasticSans/volumeGroups/volumes/write",
+          "Microsoft.ElasticSan/locations/*",
+          "Microsoft.Compute/locations/*",
+          "Microsoft.Compute/disks/read",
+          "Microsoft.Compute/disks/beginGetAccess/action",
+          "Microsoft.Compute/disks/endGetAccess/action",
+          "Microsoft.Compute/snapshots/read",
+          "Microsoft.Compute/snapshots/beginGetAccess/action",
+          "Microsoft.Compute/snapshots/endGetAccess/action"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
     "RoleName": "Elastic SAN Snapshot Exporter",
     "Description": "Allows for creating and exporting Snapshot of Elastic San Volume",
     "Permissions": [
@@ -10816,31 +10841,6 @@
           "Microsoft.Compute/snapshots/read",
           "Microsoft.Compute/snapshots/write",
           "Microsoft.Compute/snapshots/delete"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Elastic SAN Volume Importer",
-    "Description": "Allows for Importing Elastic San Volume",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.ElasticSan/elasticSans/volumeGroups/*/read",
-          "Microsoft.ElasticSan/elasticSans/volumeGroups/volumes/write",
-          "Microsoft.ElasticSan/locations/*",
-          "Microsoft.Compute/locations/*",
-          "Microsoft.Compute/disks/read",
-          "Microsoft.Compute/disks/beginGetAccess/action",
-          "Microsoft.Compute/disks/endGetAccess/action",
-          "Microsoft.Compute/snapshots/read",
-          "Microsoft.Compute/snapshots/beginGetAccess/action",
-          "Microsoft.Compute/snapshots/endGetAccess/action"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -10957,16 +10957,14 @@
     ]
   },
   {
-    "RoleName": "DeID Batch Data Owner",
-    "Description": "Create and manage DeID batch jobs. This role is in preview and subject to change.",
+    "RoleName": "DeID Realtime Data User",
+    "Description": "Execute requests against DeID realtime endpoint. This role is in preview and subject to change.",
     "Permissions": [
       {
         "actions": [],
         "not_actions": [],
         "data_actions": [
-          "Microsoft.HealthDataAIServices/DeidServices/Batch/write",
-          "Microsoft.HealthDataAIServices/DeidServices/Batch/delete",
-          "Microsoft.HealthDataAIServices/DeidServices/Batch/read"
+          "Microsoft.HealthDataAIServices/DeidServices/Realtime/action"
         ],
         "not_data_actions": []
       }
@@ -10990,14 +10988,16 @@
     ]
   },
   {
-    "RoleName": "DeID Realtime Data User",
-    "Description": "Execute requests against DeID realtime endpoint. This role is in preview and subject to change.",
+    "RoleName": "DeID Batch Data Owner",
+    "Description": "Create and manage DeID batch jobs. This role is in preview and subject to change.",
     "Permissions": [
       {
         "actions": [],
         "not_actions": [],
         "data_actions": [
-          "Microsoft.HealthDataAIServices/DeidServices/Realtime/action"
+          "Microsoft.HealthDataAIServices/DeidServices/Batch/write",
+          "Microsoft.HealthDataAIServices/DeidServices/Batch/delete",
+          "Microsoft.HealthDataAIServices/DeidServices/Batch/read"
         ],
         "not_data_actions": []
       }
@@ -11134,6 +11134,93 @@
     ]
   },
   {
+    "RoleName": "Azure Stack HCI VM Reader",
+    "Description": "Grants permissions to view VMs",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.AzureStackHCI/VirtualMachines/Read",
+          "Microsoft.AzureStackHCI/virtualMachineInstances/Read",
+          "Microsoft.AzureStackHCI/VirtualMachines/Extensions/Read",
+          "Microsoft.AzureStackHCI/VirtualNetworks/Read",
+          "Microsoft.AzureStackHCI/LogicalNetworks/Read",
+          "Microsoft.AzureStackHCI/NetworkInterfaces/Read",
+          "Microsoft.AzureStackHCI/VirtualHardDisks/Read",
+          "Microsoft.AzureStackHCI/StorageContainers/Read",
+          "Microsoft.AzureStackHCI/GalleryImages/Read",
+          "Microsoft.AzureStackHCI/MarketplaceGalleryImages/Read",
+          "Microsoft.AzureStackHCI/NetworkSecurityGroups/Read",
+          "Microsoft.AzureStackHCI/NetworkSecurityGroups/SecurityRules/Read",
+          "Microsoft.HybridCompute/licenses/read",
+          "Microsoft.HybridCompute/machines/extensions/read",
+          "Microsoft.HybridCompute/machines/licenseProfiles/read",
+          "Microsoft.HybridCompute/machines/patchAssessmentResults/read",
+          "Microsoft.HybridCompute/machines/patchAssessmentResults/softwarePatches/read",
+          "Microsoft.HybridCompute/machines/patchInstallationResults/read",
+          "Microsoft.HybridCompute/machines/patchInstallationResults/softwarePatches/read",
+          "Microsoft.HybridCompute/machines/read",
+          "Microsoft.HybridCompute/privateLinkScopes/networkSecurityPerimeterConfigurations/read",
+          "Microsoft.HybridCompute/privateLinkScopes/privateEndpointConnections/read",
+          "Microsoft.HybridCompute/privateLinkScopes/read",
+          "Microsoft.Insights/AlertRules/Write",
+          "Microsoft.Insights/AlertRules/Delete",
+          "Microsoft.Insights/AlertRules/Read",
+          "Microsoft.Insights/AlertRules/Activated/Action",
+          "Microsoft.Insights/AlertRules/Resolved/Action",
+          "Microsoft.Insights/AlertRules/Throttled/Action",
+          "Microsoft.Insights/AlertRules/Incidents/Read",
+          "Microsoft.Resources/deployments/read",
+          "Microsoft.Resources/deployments/exportTemplate/action",
+          "Microsoft.Resources/deployments/operations/read",
+          "Microsoft.Resources/deployments/operationstatuses/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read",
+          "Microsoft.ResourceHealth/availabilityStatuses/read",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Resources/subscriptions/operationresults/read"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Azure AI Developer",
+    "Description": "Can perform all actions within an Azure AI resource besides managing the resource itself.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.MachineLearningServices/workspaces/*/read",
+          "Microsoft.MachineLearningServices/workspaces/*/action",
+          "Microsoft.MachineLearningServices/workspaces/*/delete",
+          "Microsoft.MachineLearningServices/workspaces/*/write",
+          "Microsoft.MachineLearningServices/locations/*/read",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Resources/deployments/*"
+        ],
+        "not_actions": [
+          "Microsoft.MachineLearningServices/workspaces/delete",
+          "Microsoft.MachineLearningServices/workspaces/write",
+          "Microsoft.MachineLearningServices/workspaces/listKeys/action",
+          "Microsoft.MachineLearningServices/workspaces/hubs/write",
+          "Microsoft.MachineLearningServices/workspaces/hubs/delete",
+          "Microsoft.MachineLearningServices/workspaces/featurestores/write",
+          "Microsoft.MachineLearningServices/workspaces/featurestores/delete"
+        ],
+        "data_actions": [
+          "Microsoft.CognitiveServices/accounts/OpenAI/*",
+          "Microsoft.CognitiveServices/accounts/SpeechServices/*",
+          "Microsoft.CognitiveServices/accounts/ContentSafety/*"
+        ],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
     "RoleName": "Azure Stack HCI VM Contributor",
     "Description": "Grants permissions to perform all VM actions",
     "Permissions": [
@@ -11222,93 +11309,6 @@
     ]
   },
   {
-    "RoleName": "Azure Stack HCI VM Reader",
-    "Description": "Grants permissions to view VMs",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.AzureStackHCI/VirtualMachines/Read",
-          "Microsoft.AzureStackHCI/virtualMachineInstances/Read",
-          "Microsoft.AzureStackHCI/VirtualMachines/Extensions/Read",
-          "Microsoft.AzureStackHCI/VirtualNetworks/Read",
-          "Microsoft.AzureStackHCI/LogicalNetworks/Read",
-          "Microsoft.AzureStackHCI/NetworkInterfaces/Read",
-          "Microsoft.AzureStackHCI/VirtualHardDisks/Read",
-          "Microsoft.AzureStackHCI/StorageContainers/Read",
-          "Microsoft.AzureStackHCI/GalleryImages/Read",
-          "Microsoft.AzureStackHCI/MarketplaceGalleryImages/Read",
-          "Microsoft.AzureStackHCI/NetworkSecurityGroups/Read",
-          "Microsoft.AzureStackHCI/NetworkSecurityGroups/SecurityRules/Read",
-          "Microsoft.HybridCompute/licenses/read",
-          "Microsoft.HybridCompute/machines/extensions/read",
-          "Microsoft.HybridCompute/machines/licenseProfiles/read",
-          "Microsoft.HybridCompute/machines/patchAssessmentResults/read",
-          "Microsoft.HybridCompute/machines/patchAssessmentResults/softwarePatches/read",
-          "Microsoft.HybridCompute/machines/patchInstallationResults/read",
-          "Microsoft.HybridCompute/machines/patchInstallationResults/softwarePatches/read",
-          "Microsoft.HybridCompute/machines/read",
-          "Microsoft.HybridCompute/privateLinkScopes/networkSecurityPerimeterConfigurations/read",
-          "Microsoft.HybridCompute/privateLinkScopes/privateEndpointConnections/read",
-          "Microsoft.HybridCompute/privateLinkScopes/read",
-          "Microsoft.Insights/AlertRules/Write",
-          "Microsoft.Insights/AlertRules/Delete",
-          "Microsoft.Insights/AlertRules/Read",
-          "Microsoft.Insights/AlertRules/Activated/Action",
-          "Microsoft.Insights/AlertRules/Resolved/Action",
-          "Microsoft.Insights/AlertRules/Throttled/Action",
-          "Microsoft.Insights/AlertRules/Incidents/Read",
-          "Microsoft.Resources/deployments/read",
-          "Microsoft.Resources/deployments/exportTemplate/action",
-          "Microsoft.Resources/deployments/operations/read",
-          "Microsoft.Resources/deployments/operationstatuses/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read",
-          "Microsoft.ResourceHealth/availabilityStatuses/read",
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Resources/subscriptions/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.Resources/subscriptions/operationresults/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Azure AI Developer",
-    "Description": "Can perform all actions within an Azure AI resource besides managing the resource itself.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.MachineLearningServices/workspaces/*/read",
-          "Microsoft.MachineLearningServices/workspaces/*/action",
-          "Microsoft.MachineLearningServices/workspaces/*/delete",
-          "Microsoft.MachineLearningServices/workspaces/*/write",
-          "Microsoft.MachineLearningServices/locations/*/read",
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Resources/deployments/*"
-        ],
-        "not_actions": [
-          "Microsoft.MachineLearningServices/workspaces/delete",
-          "Microsoft.MachineLearningServices/workspaces/write",
-          "Microsoft.MachineLearningServices/workspaces/listKeys/action",
-          "Microsoft.MachineLearningServices/workspaces/hubs/write",
-          "Microsoft.MachineLearningServices/workspaces/hubs/delete",
-          "Microsoft.MachineLearningServices/workspaces/featurestores/write",
-          "Microsoft.MachineLearningServices/workspaces/featurestores/delete"
-        ],
-        "data_actions": [
-          "Microsoft.CognitiveServices/accounts/OpenAI/*",
-          "Microsoft.CognitiveServices/accounts/SpeechServices/*",
-          "Microsoft.CognitiveServices/accounts/ContentSafety/*"
-        ],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
     "RoleName": "Deployment Environments Reader",
     "Description": "Provides read access to environment resources.",
     "Permissions": [
@@ -11327,6 +11327,28 @@
           "Microsoft.DevCenter/projects/users/environments/adminRead/action",
           "Microsoft.DevCenter/projects/users/environments/adminActionRead/action",
           "Microsoft.DevCenter/projects/users/environments/adminOutputsRead/action"
+        ],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "EventGrid Data Receiver",
+    "Description": "Allows receive access to event grid events.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.EventGrid/eventSubscriptions/read",
+          "Microsoft.EventGrid/topicTypes/eventSubscriptions/read",
+          "Microsoft.EventGrid/locations/eventSubscriptions/read",
+          "Microsoft.EventGrid/locations/topicTypes/eventSubscriptions/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.EventGrid/namespaces/read"
+        ],
+        "not_actions": [],
+        "data_actions": [
+          "Microsoft.EventGrid/events/receive/action"
         ],
         "not_data_actions": []
       }
@@ -11359,23 +11381,38 @@
     ]
   },
   {
-    "RoleName": "EventGrid Data Receiver",
-    "Description": "Allows receive access to event grid events.",
+    "RoleName": "Advisor Reviews Contributor",
+    "Description": "View reviews for a workload and triage recommendations linked to them.",
     "Permissions": [
       {
         "actions": [
+          "Microsoft.Advisor/resiliencyReviews/read",
+          "Microsoft.Advisor/triageRecommendations/read",
+          "Microsoft.Advisor/triageRecommendations/approve/action",
+          "Microsoft.Advisor/triageRecommendations/reject/action",
+          "Microsoft.Advisor/triageRecommendations/reset/action",
           "Microsoft.Authorization/*/read",
-          "Microsoft.EventGrid/eventSubscriptions/read",
-          "Microsoft.EventGrid/topicTypes/eventSubscriptions/read",
-          "Microsoft.EventGrid/locations/eventSubscriptions/read",
-          "Microsoft.EventGrid/locations/topicTypes/eventSubscriptions/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.EventGrid/namespaces/read"
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.Resources/deployments/*",
+          "Microsoft.Resources/subscriptions/resourceGroups/read"
         ],
         "not_actions": [],
-        "data_actions": [
-          "Microsoft.EventGrid/events/receive/action"
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Advisor Reviews Reader",
+    "Description": "View reviews for a workload and recommendations linked to them.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.Advisor/resiliencyReviews/read",
+          "Microsoft.Advisor/triageRecommendations/read"
         ],
+        "not_actions": [],
+        "data_actions": [],
         "not_data_actions": []
       }
     ]
@@ -11403,43 +11440,6 @@
       {
         "actions": [
           "Microsoft.Authorization/*/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Advisor Reviews Reader",
-    "Description": "View reviews for a workload and recommendations linked to them.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Advisor/resiliencyReviews/read",
-          "Microsoft.Advisor/triageRecommendations/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Advisor Reviews Contributor",
-    "Description": "View reviews for a workload and triage recommendations linked to them.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Advisor/resiliencyReviews/read",
-          "Microsoft.Advisor/triageRecommendations/read",
-          "Microsoft.Advisor/triageRecommendations/approve/action",
-          "Microsoft.Advisor/triageRecommendations/reject/action",
-          "Microsoft.Advisor/triageRecommendations/reset/action",
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Insights/alertRules/*",
-          "Microsoft.Resources/deployments/*",
-          "Microsoft.Resources/subscriptions/resourceGroups/read"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -11565,13 +11565,13 @@
     ]
   },
   {
-    "RoleName": "Azure Kubernetes Service Hybrid Cluster Admin Role",
-    "Description": "List cluster admin credential action.",
+    "RoleName": "Azure Kubernetes Service Hybrid Cluster User Role",
+    "Description": "List cluster user credential action.",
     "Permissions": [
       {
         "actions": [
           "Microsoft.HybridContainerService/provisionedClusterInstances/read",
-          "Microsoft.HybridContainerService/provisionedClusterInstances/listAdminKubeconfig/action",
+          "Microsoft.HybridContainerService/provisionedClusterInstances/listUserKubeconfig/action",
           "Microsoft.Kubernetes/connectedClusters/Read"
         ],
         "not_actions": [],
@@ -11581,13 +11581,13 @@
     ]
   },
   {
-    "RoleName": "Azure Kubernetes Service Hybrid Cluster User Role",
-    "Description": "List cluster user credential action.",
+    "RoleName": "Azure Kubernetes Service Hybrid Cluster Admin Role",
+    "Description": "List cluster admin credential action.",
     "Permissions": [
       {
         "actions": [
           "Microsoft.HybridContainerService/provisionedClusterInstances/read",
-          "Microsoft.HybridContainerService/provisionedClusterInstances/listUserKubeconfig/action",
+          "Microsoft.HybridContainerService/provisionedClusterInstances/listAdminKubeconfig/action",
           "Microsoft.Kubernetes/connectedClusters/Read"
         ],
         "not_actions": [],
@@ -11685,43 +11685,6 @@
     ]
   },
   {
-    "RoleName": "Community Reader Role",
-    "Description": "Community Reader Role to access the resources of Microsoft.Mission stored with RPSAAS.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Mission/Locations/OperationStatuses/read",
-          "Microsoft.Mission/Operations/read",
-          "Microsoft.Mission/catalogs/read",
-          "Microsoft.Mission/communities/read",
-          "Microsoft.Mission/internalConnections/read",
-          "Microsoft.Mission/externalConnections/read",
-          "Microsoft.Mission/virtualEnclaves/read",
-          "Microsoft.Mission/virtualEnclaves/endpoints/read",
-          "Microsoft.Mission/virtualEnclaves/workloads/read",
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Insights/alertRules/*",
-          "Microsoft.Resources/deployments/*",
-          "Microsoft.Resources/subscriptions/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
-          "Microsoft.Resources/subscriptions/operationresults/read",
-          "Microsoft.ResourceHealth/availabilityStatuses/read",
-          "Microsoft.Features/providers/features/read",
-          "Microsoft.Features/features/read",
-          "Microsoft.Mission/communities/communityEndpoints/read",
-          "Microsoft.Mission/communities/transitHubs/read",
-          "Microsoft.Mission/enclaveConnections/read",
-          "Microsoft.Mission/virtualEnclaves/enclaveEndpoints/read",
-          "Microsoft.Mission/approvals/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
     "RoleName": "Enclave Contributor Role",
     "Description": "Enclave Contributor Role to access the resources of Microsoft.Mission stored with RPSAAS.",
     "Permissions": [
@@ -11770,17 +11733,38 @@
     ]
   },
   {
-    "RoleName": "Operator Nexus Key Vault Writer Service Role (Preview)",
-    "Description": "(Preview) Provides Azure Operator Nexus services the ability to write to a Key Vault. This role is in preview and subject to change.",
+    "RoleName": "Community Reader Role",
+    "Description": "Community Reader Role to access the resources of Microsoft.Mission stored with RPSAAS.",
     "Permissions": [
       {
         "actions": [
-          "Microsoft.KeyVault/vaults/read"
+          "Microsoft.Mission/Locations/OperationStatuses/read",
+          "Microsoft.Mission/Operations/read",
+          "Microsoft.Mission/catalogs/read",
+          "Microsoft.Mission/communities/read",
+          "Microsoft.Mission/internalConnections/read",
+          "Microsoft.Mission/externalConnections/read",
+          "Microsoft.Mission/virtualEnclaves/read",
+          "Microsoft.Mission/virtualEnclaves/endpoints/read",
+          "Microsoft.Mission/virtualEnclaves/workloads/read",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.Resources/deployments/*",
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
+          "Microsoft.Resources/subscriptions/operationresults/read",
+          "Microsoft.ResourceHealth/availabilityStatuses/read",
+          "Microsoft.Features/providers/features/read",
+          "Microsoft.Features/features/read",
+          "Microsoft.Mission/communities/communityEndpoints/read",
+          "Microsoft.Mission/communities/transitHubs/read",
+          "Microsoft.Mission/enclaveConnections/read",
+          "Microsoft.Mission/virtualEnclaves/enclaveEndpoints/read",
+          "Microsoft.Mission/approvals/read"
         ],
         "not_actions": [],
-        "data_actions": [
-          "Microsoft.KeyVault/vaults/secrets/setSecret/action"
-        ],
+        "data_actions": [],
         "not_data_actions": []
       }
     ]
@@ -11796,6 +11780,22 @@
         ],
         "not_actions": [],
         "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Operator Nexus Key Vault Writer Service Role (Preview)",
+    "Description": "(Preview) Provides Azure Operator Nexus services the ability to write to a Key Vault. This role is in preview and subject to change.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.KeyVault/vaults/read"
+        ],
+        "not_actions": [],
+        "data_actions": [
+          "Microsoft.KeyVault/vaults/secrets/setSecret/action"
+        ],
         "not_data_actions": []
       }
     ]
@@ -11870,23 +11870,6 @@
     ]
   },
   {
-    "RoleName": "Azure Spring Apps Spring Cloud Gateway Log Reader Role",
-    "Description": "Read real-time logs for Spring Cloud Gateway in Azure Spring Apps",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.AppPlatform/Spring/read",
-          "Microsoft.AppPlatform/Spring/gateways/read"
-        ],
-        "not_actions": [],
-        "data_actions": [
-          "Microsoft.AppPlatform/Spring/SpringCloudGateway/logstream/action"
-        ],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
     "RoleName": "Azure Spring Apps Managed Components Log Reader Role",
     "Description": "Read real-time logs for all managed components in Azure Spring Apps",
     "Permissions": [
@@ -11912,6 +11895,23 @@
         "not_actions": [],
         "data_actions": [
           "Microsoft.AppPlatform/Spring/ApplicationConfigurationService/logstream/action"
+        ],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Azure Spring Apps Spring Cloud Gateway Log Reader Role",
+    "Description": "Read real-time logs for Spring Cloud Gateway in Azure Spring Apps",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.AppPlatform/Spring/read",
+          "Microsoft.AppPlatform/Spring/gateways/read"
+        ],
+        "not_actions": [],
+        "data_actions": [
+          "Microsoft.AppPlatform/Spring/SpringCloudGateway/logstream/action"
         ],
         "not_data_actions": []
       }
@@ -11993,6 +11993,32 @@
     ]
   },
   {
+    "RoleName": "Azure Red Hat OpenShift Cloud Controller Manager Role",
+    "Description": "Enables permissions for the operator to manage and update the cloud controller managers deployed on top of OpenShift.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.Compute/virtualMachines/read",
+          "Microsoft.Network/loadBalancers/read",
+          "Microsoft.Network/loadBalancers/write",
+          "Microsoft.Network/networkInterfaces/read",
+          "Microsoft.Network/networkSecurityGroups/read",
+          "Microsoft.Network/networkSecurityGroups/write",
+          "Microsoft.Network/publicIPAddresses/join/action",
+          "Microsoft.Network/publicIPAddresses/read",
+          "Microsoft.Network/publicIPAddresses/write",
+          "Microsoft.Network/virtualNetworks/subnets/join/action",
+          "Microsoft.Network/virtualNetworks/subnets/read",
+          "Microsoft.Network/loadBalancers/backendAddressPools/join/action",
+          "Microsoft.Network/networkInterfaces/write"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
     "RoleName": "Azure Red Hat OpenShift Storage Operator Role",
     "Description": "Enables permissions to set OpenShift cluster-wide storage defaults. It ensures a default storageclass exists for clusters. It also installs Container Storage Interface (CSI) drivers which enable your cluster to use various storage backends.",
     "Permissions": [
@@ -12020,42 +12046,17 @@
     ]
   },
   {
-    "RoleName": "Azure Red Hat OpenShift Service Operator Role",
-    "Description": "The ARO Operator is responsible for maintaining features, checks, and resources that are specific to an Azure Red Hat OpenShift cluster's continued functionality as a managed service. This includes, but is not limited to, machine management and health, network configuration, and monitoring.",
+    "RoleName": "Azure Red Hat OpenShift Network Operator Role",
+    "Description": "Enables permissions to install and upgrade the networking components on an OpenShift cluster.",
     "Permissions": [
       {
         "actions": [
-          "Microsoft.Network/virtualNetworks/subnets/read",
-          "Microsoft.Network/virtualNetworks/subnets/write",
-          "Microsoft.Network/natGateways/join/action",
-          "Microsoft.Network/routeTables/join/action",
-          "Microsoft.Network/networkSecurityGroups/join/action",
-          "Microsoft.Storage/storageAccounts/listKeys/action",
-          "Microsoft.Storage/storageAccounts/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Azure Red Hat OpenShift Azure Files Storage Operator Role",
-    "Description": "Enables permissions to set OpenShift cluster-wide storage defaults. It ensures a default storageclass exists for clusters. It also installs Container Storage Interface (CSI) drivers which enable your cluster to use Azure Files.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Storage/storageAccounts/delete",
-          "Microsoft.Storage/storageAccounts/fileServices/read",
-          "Microsoft.Storage/storageAccounts/fileServices/shares/delete",
-          "Microsoft.Storage/storageAccounts/fileServices/shares/read",
-          "Microsoft.Storage/storageAccounts/fileServices/shares/write",
-          "Microsoft.Storage/storageAccounts/listKeys/action",
-          "Microsoft.Storage/storageAccounts/read",
-          "Microsoft.Storage/storageAccounts/write",
-          "Microsoft.Network/networkSecurityGroups/join/action",
-          "Microsoft.Network/virtualNetworks/subnets/read",
-          "Microsoft.Network/virtualNetworks/subnets/write"
+          "Microsoft.Network/networkInterfaces/read",
+          "Microsoft.Network/networkInterfaces/write",
+          "Microsoft.Network/virtualNetworks/read",
+          "Microsoft.Network/virtualNetworks/subnets/join/action",
+          "Microsoft.Network/loadBalancers/backendAddressPools/join/action",
+          "Microsoft.Compute/virtualMachines/read"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -12092,17 +12093,22 @@
     ]
   },
   {
-    "RoleName": "Azure Red Hat OpenShift Network Operator Role",
-    "Description": "Enables permissions to install and upgrade the networking components on an OpenShift cluster.",
+    "RoleName": "Azure Red Hat OpenShift Azure Files Storage Operator Role",
+    "Description": "Enables permissions to set OpenShift cluster-wide storage defaults. It ensures a default storageclass exists for clusters. It also installs Container Storage Interface (CSI) drivers which enable your cluster to use Azure Files.",
     "Permissions": [
       {
         "actions": [
-          "Microsoft.Network/networkInterfaces/read",
-          "Microsoft.Network/networkInterfaces/write",
-          "Microsoft.Network/virtualNetworks/read",
-          "Microsoft.Network/virtualNetworks/subnets/join/action",
-          "Microsoft.Network/loadBalancers/backendAddressPools/join/action",
-          "Microsoft.Compute/virtualMachines/read"
+          "Microsoft.Storage/storageAccounts/delete",
+          "Microsoft.Storage/storageAccounts/fileServices/read",
+          "Microsoft.Storage/storageAccounts/fileServices/shares/delete",
+          "Microsoft.Storage/storageAccounts/fileServices/shares/read",
+          "Microsoft.Storage/storageAccounts/fileServices/shares/write",
+          "Microsoft.Storage/storageAccounts/listKeys/action",
+          "Microsoft.Storage/storageAccounts/read",
+          "Microsoft.Storage/storageAccounts/write",
+          "Microsoft.Network/networkSecurityGroups/join/action",
+          "Microsoft.Network/virtualNetworks/subnets/read",
+          "Microsoft.Network/virtualNetworks/subnets/write"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -12111,24 +12117,18 @@
     ]
   },
   {
-    "RoleName": "Azure Red Hat OpenShift Cloud Controller Manager Role",
-    "Description": "Enables permissions for the operator to manage and update the cloud controller managers deployed on top of OpenShift.",
+    "RoleName": "Azure Red Hat OpenShift Service Operator Role",
+    "Description": "The ARO Operator is responsible for maintaining features, checks, and resources that are specific to an Azure Red Hat OpenShift cluster's continued functionality as a managed service. This includes, but is not limited to, machine management and health, network configuration, and monitoring.",
     "Permissions": [
       {
         "actions": [
-          "Microsoft.Compute/virtualMachines/read",
-          "Microsoft.Network/loadBalancers/read",
-          "Microsoft.Network/loadBalancers/write",
-          "Microsoft.Network/networkInterfaces/read",
-          "Microsoft.Network/networkSecurityGroups/read",
-          "Microsoft.Network/networkSecurityGroups/write",
-          "Microsoft.Network/publicIPAddresses/join/action",
-          "Microsoft.Network/publicIPAddresses/read",
-          "Microsoft.Network/publicIPAddresses/write",
-          "Microsoft.Network/virtualNetworks/subnets/join/action",
           "Microsoft.Network/virtualNetworks/subnets/read",
-          "Microsoft.Network/loadBalancers/backendAddressPools/join/action",
-          "Microsoft.Network/networkInterfaces/write"
+          "Microsoft.Network/virtualNetworks/subnets/write",
+          "Microsoft.Network/natGateways/join/action",
+          "Microsoft.Network/routeTables/join/action",
+          "Microsoft.Network/networkSecurityGroups/join/action",
+          "Microsoft.Storage/storageAccounts/listKeys/action",
+          "Microsoft.Storage/storageAccounts/read"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -12401,20 +12401,6 @@
     ]
   },
   {
-    "RoleName": "Health Bot Reader",
-    "Description": "Users with reader access can sign in, have read-only access to the bot resources, scenarios and configuration setting except for the bot instance keys & secrets (including Authentication, Data Connection and Channels keys) and the end-user inputs (including Feedback, Unrecognized utterances and Conversation logs).",
-    "Permissions": [
-      {
-        "actions": [],
-        "not_actions": [],
-        "data_actions": [
-          "Microsoft.HealthBot/healthBots/Reader/Action"
-        ],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
     "RoleName": "Health Bot Editor",
     "Description": "Users with editor access can sign in, view and edit all the bot resources, scenarios and configuration setting except for the bot instance keys & secrets and the end-user inputs (including Feedback, Unrecognized utterances and Conversation logs). A read-only access to the bot skills and channels.",
     "Permissions": [
@@ -12429,14 +12415,14 @@
     ]
   },
   {
-    "RoleName": "Health Bot Admin",
-    "Description": "Users with admin access can sign in, view and edit all of the bot resources, scenarios and configuration setting including the bot instance keys & secrets.",
+    "RoleName": "Health Bot Reader",
+    "Description": "Users with reader access can sign in, have read-only access to the bot resources, scenarios and configuration setting except for the bot instance keys & secrets (including Authentication, Data Connection and Channels keys) and the end-user inputs (including Feedback, Unrecognized utterances and Conversation logs).",
     "Permissions": [
       {
         "actions": [],
         "not_actions": [],
         "data_actions": [
-          "Microsoft.HealthBot/healthBots/Admin/Action"
+          "Microsoft.HealthBot/healthBots/Reader/Action"
         ],
         "not_data_actions": []
       }
@@ -12457,6 +12443,20 @@
         "not_actions": [],
         "data_actions": [
           "Microsoft.ProgrammableConnectivity/Gateways/NetworkAPIAccess"
+        ],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Health Bot Admin",
+    "Description": "Users with admin access can sign in, view and edit all of the bot resources, scenarios and configuration setting including the bot instance keys & secrets.",
+    "Permissions": [
+      {
+        "actions": [],
+        "not_actions": [],
+        "data_actions": [
+          "Microsoft.HealthBot/healthBots/Admin/Action"
         ],
         "not_data_actions": []
       }
@@ -12687,6 +12687,22 @@
     ]
   },
   {
+    "RoleName": "Backup MUA Operator",
+    "Description": "Backup MultiUser-Authorization. Allows user to perform critical operation protected by resourceguard",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.DataProtection/*/action",
+          "Microsoft.DataProtection/*/read",
+          "Microsoft.Authorization/*/read"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
     "RoleName": "Backup MUA Admin",
     "Description": "Backup MultiUser-Authorization. Can create/delete ResourceGuard ",
     "Permissions": [
@@ -12718,22 +12734,6 @@
           "Microsoft.DataProtection/backupVaults/backupResourceGuardProxies/unlockDelete/action",
           "Microsoft.DataProtection/subscriptions/providers/resourceGuards/read",
           "Microsoft.DataProtection/subscriptions/resourceGroups/providers/resourceGuards/{operationName}/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Backup MUA Operator",
-    "Description": "Backup MultiUser-Authorization. Allows user to perform critical operation protected by resourceguard",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.DataProtection/*/action",
-          "Microsoft.DataProtection/*/read",
-          "Microsoft.Authorization/*/read"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -12804,6 +12804,22 @@
     ]
   },
   {
+    "RoleName": "CrossConnectionReader",
+    "Description": "Allows for read access to ExpressRoute CrossConnections",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.ClassicNetwork/expressRouteCrossConnections/*/read",
+          "Microsoft.Network/expressRouteCrossConnections/*/read",
+          "Microsoft.Features/providers/features/read"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
     "RoleName": "CrossConnectionManager",
     "Description": "Allows for read, write access to ExpressRoute CrossConnections",
     "Permissions": [
@@ -12816,22 +12832,6 @@
         "not_actions": [
           "Microsoft.Network/expressRouteCrossConnections/delete"
         ],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "CrossConnectionReader",
-    "Description": "Allows for read access to ExpressRoute CrossConnections",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.ClassicNetwork/expressRouteCrossConnections/*/read",
-          "Microsoft.Network/expressRouteCrossConnections/*/read",
-          "Microsoft.Features/providers/features/read"
-        ],
-        "not_actions": [],
         "data_actions": [],
         "not_data_actions": []
       }
@@ -12862,16 +12862,21 @@
     ]
   },
   {
-    "RoleName": "Azure API Center Compliance Manager",
-    "Description": "Allows managing API compliance in Azure API Center service.",
+    "RoleName": "Azure API Center Service Contributor",
+    "Description": "Allows managing Azure API Center service.",
     "Permissions": [
       {
         "actions": [
-          "Microsoft.ApiCenter/services/*/read",
-          "Microsoft.ApiCenter/services/workspaces/apis/versions/definitions/updateAnalysisState/action",
-          "Microsoft.ApiCenter/services/workspaces/apis/versions/definitions/exportSpecification/action"
+          "Microsoft.ApiCenter/services/*",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.ResourceHealth/availabilityStatuses/read",
+          "Microsoft.Resources/deployments/*",
+          "Microsoft.Resources/subscriptions/resourceGroups/read"
         ],
-        "not_actions": [],
+        "not_actions": [
+          "Microsoft.ApiCenter/services/workspaces/apis/versions/definitions/updateAnalysisState/action"
+        ],
         "data_actions": [],
         "not_data_actions": []
       }
@@ -12898,21 +12903,16 @@
     ]
   },
   {
-    "RoleName": "Azure API Center Service Contributor",
-    "Description": "Allows managing Azure API Center service.",
+    "RoleName": "Azure API Center Compliance Manager",
+    "Description": "Allows managing API compliance in Azure API Center service.",
     "Permissions": [
       {
         "actions": [
-          "Microsoft.ApiCenter/services/*",
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Insights/alertRules/*",
-          "Microsoft.ResourceHealth/availabilityStatuses/read",
-          "Microsoft.Resources/deployments/*",
-          "Microsoft.Resources/subscriptions/resourceGroups/read"
+          "Microsoft.ApiCenter/services/*/read",
+          "Microsoft.ApiCenter/services/workspaces/apis/versions/definitions/updateAnalysisState/action",
+          "Microsoft.ApiCenter/services/workspaces/apis/versions/definitions/exportSpecification/action"
         ],
-        "not_actions": [
-          "Microsoft.ApiCenter/services/workspaces/apis/versions/definitions/updateAnalysisState/action"
-        ],
+        "not_actions": [],
         "data_actions": [],
         "not_data_actions": []
       }
@@ -12939,40 +12939,26 @@
     ]
   },
   {
-    "RoleName": "Oracle Subscriptions Manager Built-in Role",
-    "Description": "Grants full access to manage all Oracle Subscriptions resources",
+    "RoleName": "Oracle.Database VmCluster Administrator Built-in Role",
+    "Description": "Grants full access to manage all VmCluster resources",
     "Permissions": [
       {
         "actions": [
-          "Oracle.Database/oracleSubscriptions/*/read",
-          "Oracle.Database/oracleSubscriptions/*/write",
-          "Oracle.Database/oracleSubscriptions/*/delete",
-          "Oracle.Database/oracleSubscriptions/*/action",
+          "Oracle.Database/cloudVmClusters/*/read",
+          "Oracle.Database/cloudVmClusters/*/write",
+          "Oracle.Database/cloudVmClusters/*/delete",
+          "Oracle.Database/cloudExadataInfrastructures/write",
+          "Oracle.Database/cloudExadataInfrastructures/*/read",
           "Oracle.Database/Locations/*/read",
           "Oracle.Database/Locations/*/write",
           "Oracle.Database/Operations/read",
+          "Oracle.Database/oracleSubscriptions/*/read",
           "Microsoft.Resources/deployments/*",
-          "Microsoft.Resources/subscriptions/resourceGroups/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Oracle.Database Owner Built-in Role",
-    "Description": "Grants full access to manage all Oracle.Database resources",
-    "Permissions": [
-      {
-        "actions": [
-          "Oracle.Database/*",
           "Microsoft.Resources/subscriptions/resourceGroups/read",
           "Microsoft.Network/virtualNetworks/read",
           "Microsoft.Network/virtualNetworks/subnets/read",
           "Microsoft.Network/virtualNetworks/subnets/write",
           "Microsoft.Network/locations/operations/read",
-          "Microsoft.Resources/deployments/*",
           "Microsoft.Compute/sshPublicKeys/read",
           "Microsoft.Compute/sshPublicKeys/write",
           "Microsoft.Compute/sshPublicKeys/generateKeyPair/action"
@@ -13010,29 +12996,43 @@
     ]
   },
   {
-    "RoleName": "Oracle.Database VmCluster Administrator Built-in Role",
-    "Description": "Grants full access to manage all VmCluster resources",
+    "RoleName": "Oracle.Database Owner Built-in Role",
+    "Description": "Grants full access to manage all Oracle.Database resources",
     "Permissions": [
       {
         "actions": [
-          "Oracle.Database/cloudVmClusters/*/read",
-          "Oracle.Database/cloudVmClusters/*/write",
-          "Oracle.Database/cloudVmClusters/*/delete",
-          "Oracle.Database/cloudExadataInfrastructures/write",
-          "Oracle.Database/cloudExadataInfrastructures/*/read",
-          "Oracle.Database/Locations/*/read",
-          "Oracle.Database/Locations/*/write",
-          "Oracle.Database/Operations/read",
-          "Oracle.Database/oracleSubscriptions/*/read",
-          "Microsoft.Resources/deployments/*",
+          "Oracle.Database/*",
           "Microsoft.Resources/subscriptions/resourceGroups/read",
           "Microsoft.Network/virtualNetworks/read",
           "Microsoft.Network/virtualNetworks/subnets/read",
           "Microsoft.Network/virtualNetworks/subnets/write",
           "Microsoft.Network/locations/operations/read",
+          "Microsoft.Resources/deployments/*",
           "Microsoft.Compute/sshPublicKeys/read",
           "Microsoft.Compute/sshPublicKeys/write",
           "Microsoft.Compute/sshPublicKeys/generateKeyPair/action"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Oracle Subscriptions Manager Built-in Role",
+    "Description": "Grants full access to manage all Oracle Subscriptions resources",
+    "Permissions": [
+      {
+        "actions": [
+          "Oracle.Database/oracleSubscriptions/*/read",
+          "Oracle.Database/oracleSubscriptions/*/write",
+          "Oracle.Database/oracleSubscriptions/*/delete",
+          "Oracle.Database/oracleSubscriptions/*/action",
+          "Oracle.Database/Locations/*/read",
+          "Oracle.Database/Locations/*/write",
+          "Oracle.Database/Operations/read",
+          "Microsoft.Resources/deployments/*",
+          "Microsoft.Resources/subscriptions/resourceGroups/read"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -13075,6 +13075,22 @@
     ]
   },
   {
+    "RoleName": "Azure Messaging Catalog Data Owner",
+    "Description": "Allows for full access to Azure Messaging Catalog resources.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.MessagingCatalog/*"
+        ],
+        "not_actions": [],
+        "data_actions": [
+          "Microsoft.MessagingCatalog/*"
+        ],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
     "RoleName": "Azure Spring Apps Application Configuration Service Config File Pattern Reader Role",
     "Description": "Read content of config file pattern for Application Configuration Service in Azure Spring Apps",
     "Permissions": [
@@ -13086,22 +13102,6 @@
         "not_actions": [],
         "data_actions": [
           "Microsoft.AppPlatform/Spring/ApplicationConfigurationService/read"
-        ],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Azure Messaging Catalog Data Owner",
-    "Description": "Allows for full access to Azure Messaging Catalog resources.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.MessagingCatalog/*"
-        ],
-        "not_actions": [],
-        "data_actions": [
-          "Microsoft.MessagingCatalog/*"
         ],
         "not_data_actions": []
       }
@@ -13270,6 +13270,20 @@
     ]
   },
   {
+    "RoleName": "Azure Spring Apps Job Execution Instance List Role",
+    "Description": "List instances for job executions in Azure Spring Apps",
+    "Permissions": [
+      {
+        "actions": [],
+        "not_actions": [],
+        "data_actions": [
+          "Microsoft.AppPlatform/Spring/jobs/executions/listInstances/action"
+        ],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
     "RoleName": "Azure Spring Apps Job Log Reader Role",
     "Description": "Read real-time logs for jobs in Azure Spring Apps",
     "Permissions": [
@@ -13282,20 +13296,6 @@
         "not_actions": [],
         "data_actions": [
           "Microsoft.AppPlatform/Spring/jobs/executions/logstream/action",
-          "Microsoft.AppPlatform/Spring/jobs/executions/listInstances/action"
-        ],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Azure Spring Apps Job Execution Instance List Role",
-    "Description": "List instances for job executions in Azure Spring Apps",
-    "Permissions": [
-      {
-        "actions": [],
-        "not_actions": [],
-        "data_actions": [
           "Microsoft.AppPlatform/Spring/jobs/executions/listInstances/action"
         ],
         "not_data_actions": []
@@ -13320,6 +13320,24 @@
     ]
   },
   {
+    "RoleName": "Nexus Network Fabric Service Reader",
+    "Description": "Read-only access to Nexus Network Fabric Service",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.ManagedNetworkFabric/*/read",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.Resources/deployments/*",
+          "Microsoft.Resources/subscriptions/resourceGroups/read"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
     "RoleName": "Nexus Network Fabric Service Writer",
     "Description": "Read-write access to Nexus Network Fabric Service",
     "Permissions": [
@@ -13339,16 +13357,17 @@
     ]
   },
   {
-    "RoleName": "Nexus Network Fabric Service Reader",
-    "Description": "Read-only access to Nexus Network Fabric Service",
+    "RoleName": "Azure Deployment Stack Contributor",
+    "Description": "Allows a user to manage deployment stacks, but cannot create or delete deny assignments within the deployment stack.",
     "Permissions": [
       {
         "actions": [
-          "Microsoft.ManagedNetworkFabric/*/read",
           "Microsoft.Authorization/*/read",
           "Microsoft.Insights/alertRules/*",
           "Microsoft.Resources/deployments/*",
-          "Microsoft.Resources/subscriptions/resourceGroups/read"
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Resources/deploymentStacks/write",
+          "Microsoft.Resources/deploymentStacks/read"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -13367,25 +13386,6 @@
           "Microsoft.Resources/deployments/*",
           "Microsoft.Resources/subscriptions/resourceGroups/read",
           "Microsoft.Resources/deploymentStacks/*"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Azure Deployment Stack Contributor",
-    "Description": "Allows a user to manage deployment stacks, but cannot create or delete deny assignments within the deployment stack.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Insights/alertRules/*",
-          "Microsoft.Resources/deployments/*",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.Resources/deploymentStacks/write",
-          "Microsoft.Resources/deploymentStacks/read"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -13444,21 +13444,6 @@
     ]
   },
   {
-    "RoleName": "Container Registry Repository Reader",
-    "Description": "Allows for read access to Azure Container Registry repositories, but excluding catalog listing. This role is in preview and subject to change.",
-    "Permissions": [
-      {
-        "actions": [],
-        "not_actions": [],
-        "data_actions": [
-          "Microsoft.ContainerRegistry/registries/repositories/metadata/read",
-          "Microsoft.ContainerRegistry/registries/repositories/content/read"
-        ],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
     "RoleName": "Container Registry Repository Writer",
     "Description": "Allows for read and write access to Azure Container Registry repositories, but excluding catalog listing. This role is in preview and subject to change.",
     "Permissions": [
@@ -13470,6 +13455,21 @@
           "Microsoft.ContainerRegistry/registries/repositories/content/read",
           "Microsoft.ContainerRegistry/registries/repositories/metadata/write",
           "Microsoft.ContainerRegistry/registries/repositories/content/write"
+        ],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Container Registry Repository Reader",
+    "Description": "Allows for read access to Azure Container Registry repositories, but excluding catalog listing. This role is in preview and subject to change.",
+    "Permissions": [
+      {
+        "actions": [],
+        "not_actions": [],
+        "data_actions": [
+          "Microsoft.ContainerRegistry/registries/repositories/metadata/read",
+          "Microsoft.ContainerRegistry/registries/repositories/content/read"
         ],
         "not_data_actions": []
       }
@@ -13579,15 +13579,13 @@
     ]
   },
   {
-    "RoleName": "ProviderHub Contributor",
-    "Description": "Allows you to create and manage Microsoft.ProviderHub resources through the Resource Provider Platform. Does not allow you to assign roles in Azure RBAC.",
+    "RoleName": "ProviderHub Reader",
+    "Description": "Allows you to view all Microsoft.ProviderHub resources created through the Resource Provider Platform, but does not allow you to make any changes to the resources.",
     "Permissions": [
       {
         "actions": [
-          "Microsoft.ProviderHub/*",
+          "Microsoft.ProviderHub/*/read",
           "Microsoft.Authorization/*/read",
-          "Microsoft.Insights/alertRules/*",
-          "Microsoft.Resources/deployments/*",
           "Microsoft.Resources/subscriptions/resourceGroups/read",
           "Microsoft.ResourceHealth/availabilityStatuses/read"
         ],
@@ -13598,13 +13596,15 @@
     ]
   },
   {
-    "RoleName": "ProviderHub Reader",
-    "Description": "Allows you to view all Microsoft.ProviderHub resources created through the Resource Provider Platform, but does not allow you to make any changes to the resources.",
+    "RoleName": "ProviderHub Contributor",
+    "Description": "Allows you to create and manage Microsoft.ProviderHub resources through the Resource Provider Platform. Does not allow you to assign roles in Azure RBAC.",
     "Permissions": [
       {
         "actions": [
-          "Microsoft.ProviderHub/*/read",
+          "Microsoft.ProviderHub/*",
           "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.Resources/deployments/*",
           "Microsoft.Resources/subscriptions/resourceGroups/read",
           "Microsoft.ResourceHealth/availabilityStatuses/read"
         ],
@@ -14035,14 +14035,46 @@
     ]
   },
   {
-    "RoleName": "Container Apps Jobs Reader",
-    "Description": "Read access to ContainerApps jobs",
+    "RoleName": "Container Apps Operator",
+    "Description": "Read, logstream and exec into Container Apps.",
     "Permissions": [
       {
         "actions": [
-          "microsoft.app/jobs/read",
-          "Microsoft.App/jobs/*/read",
-          "Microsoft.App/managedenvironments/read"
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.App/containerApps/*/read",
+          "Microsoft.App/containerApps/*/action",
+          "Microsoft.App/managedEnvironments/read",
+          "Microsoft.App/managedEnvironments/*/read",
+          "Microsoft.App/managedEnvironments/join/action",
+          "Microsoft.App/managedEnvironments/checknameavailability/action",
+          "Microsoft.App/connectedEnvironments/read",
+          "Microsoft.App/connectedEnvironments/*/read",
+          "Microsoft.App/connectedEnvironments/join/action",
+          "Microsoft.App/connectedEnvironments/checknameavailability/action"
+        ],
+        "not_actions": [],
+        "data_actions": [
+          "Microsoft.App/containerApps/logstream/action",
+          "Microsoft.App/containerApps/exec/action"
+        ],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Container Apps ManagedEnvironments Contributor",
+    "Description": "Full management of Container Apps ManagedEnvironments, including creation, deletion, and updates.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.App/managedEnvironments/*/read",
+          "Microsoft.App/managedEnvironments/*/write",
+          "Microsoft.App/managedEnvironments/*/delete",
+          "Microsoft.App/managedEnvironments/*/action",
+          "Microsoft.Resources/deployments/*"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -14078,29 +14110,33 @@
     ]
   },
   {
-    "RoleName": "Container Apps Operator",
-    "Description": "Read, logstream and exec into Container Apps.",
+    "RoleName": "Container Apps ManagedEnvironments Reader",
+    "Description": "Read access to ContainerApps managedenvironments.",
     "Permissions": [
       {
         "actions": [
           "Microsoft.Authorization/*/read",
           "Microsoft.Insights/alertRules/*",
-          "Microsoft.App/containerApps/*/read",
-          "Microsoft.App/containerApps/*/action",
-          "Microsoft.App/managedEnvironments/read",
-          "Microsoft.App/managedEnvironments/*/read",
-          "Microsoft.App/managedEnvironments/join/action",
-          "Microsoft.App/managedEnvironments/checknameavailability/action",
-          "Microsoft.App/connectedEnvironments/read",
-          "Microsoft.App/connectedEnvironments/*/read",
-          "Microsoft.App/connectedEnvironments/join/action",
-          "Microsoft.App/connectedEnvironments/checknameavailability/action"
+          "Microsoft.App/managedEnvironments/*/read"
         ],
         "not_actions": [],
-        "data_actions": [
-          "Microsoft.App/containerApps/logstream/action",
-          "Microsoft.App/containerApps/exec/action"
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Container Apps Jobs Reader",
+    "Description": "Read access to ContainerApps jobs",
+    "Permissions": [
+      {
+        "actions": [
+          "microsoft.app/jobs/read",
+          "Microsoft.App/jobs/*/read",
+          "Microsoft.App/managedenvironments/read"
         ],
+        "not_actions": [],
+        "data_actions": [],
         "not_data_actions": []
       }
     ]
@@ -14114,70 +14150,6 @@
           "Microsoft.Authorization/*/read",
           "Microsoft.Insights/alertRules/*",
           "Microsoft.App/sessionPools/*/read"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Container Apps SessionPools Contributor",
-    "Description": "Full management of Container Apps SessionPools, including creation, deletion, and updates.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Insights/alertRules/*",
-          "Microsoft.App/sessionPools/*/read",
-          "Microsoft.App/sessionPools/*/write",
-          "Microsoft.App/sessionPools/*/delete",
-          "Microsoft.App/sessionPools/*/action",
-          "microsoft.App/managedEnvironments/read",
-          "Microsoft.App/managedEnvironments/*/read",
-          "Microsoft.App/managedEnvironments/join/action",
-          "Microsoft.App/managedEnvironments/checknameavailability/action",
-          "microsoft.App/connectedEnvironments/read",
-          "Microsoft.App/connectedEnvironments/*/read",
-          "Microsoft.App/connectedEnvironments/join/action",
-          "Microsoft.App/connectedEnvironments/checknameavailability/action",
-          "Microsoft.Resources/deployments/*"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Container Apps ManagedEnvironments Contributor",
-    "Description": "Full management of Container Apps ManagedEnvironments, including creation, deletion, and updates.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Insights/alertRules/*",
-          "Microsoft.App/managedEnvironments/*/read",
-          "Microsoft.App/managedEnvironments/*/write",
-          "Microsoft.App/managedEnvironments/*/delete",
-          "Microsoft.App/managedEnvironments/*/action",
-          "Microsoft.Resources/deployments/*"
-        ],
-        "not_actions": [],
-        "data_actions": [],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
-    "RoleName": "Container Apps ManagedEnvironments Reader",
-    "Description": "Read access to ContainerApps managedenvironments.",
-    "Permissions": [
-      {
-        "actions": [
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Insights/alertRules/*",
-          "Microsoft.App/managedEnvironments/*/read"
         ],
         "not_actions": [],
         "data_actions": [],
@@ -14203,6 +14175,34 @@
           "Microsoft.App/managedenvironments/join/action",
           "Microsoft.App/managedenvironments/checknameavailability/action",
           "Microsoft.app/connectedEnvironments/read",
+          "Microsoft.App/connectedEnvironments/*/read",
+          "Microsoft.App/connectedEnvironments/join/action",
+          "Microsoft.App/connectedEnvironments/checknameavailability/action",
+          "Microsoft.Resources/deployments/*"
+        ],
+        "not_actions": [],
+        "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Container Apps SessionPools Contributor",
+    "Description": "Full management of Container Apps SessionPools, including creation, deletion, and updates.",
+    "Permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.App/sessionPools/*/read",
+          "Microsoft.App/sessionPools/*/write",
+          "Microsoft.App/sessionPools/*/delete",
+          "Microsoft.App/sessionPools/*/action",
+          "microsoft.App/managedEnvironments/read",
+          "Microsoft.App/managedEnvironments/*/read",
+          "Microsoft.App/managedEnvironments/join/action",
+          "Microsoft.App/managedEnvironments/checknameavailability/action",
+          "microsoft.App/connectedEnvironments/read",
           "Microsoft.App/connectedEnvironments/*/read",
           "Microsoft.App/connectedEnvironments/join/action",
           "Microsoft.App/connectedEnvironments/checknameavailability/action",
@@ -14347,20 +14347,6 @@
     ]
   },
   {
-    "RoleName": "Azure Device Update Agent",
-    "Description": "Provide full access to all Azure Device Update agent operations",
-    "Permissions": [
-      {
-        "actions": [],
-        "not_actions": [],
-        "data_actions": [
-          "Microsoft.DeviceUpdate/updateAccounts/agents/requestUpdate/action"
-        ],
-        "not_data_actions": []
-      }
-    ]
-  },
-  {
     "RoleName": "Enclave Approver Role",
     "Description": "Read all resources in Azure Virtual Enclaves and Approve approval requests within the Enclave",
     "Permissions": [
@@ -14392,6 +14378,20 @@
         ],
         "not_actions": [],
         "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Azure Device Update Agent",
+    "Description": "Provide full access to all Azure Device Update agent operations",
+    "Permissions": [
+      {
+        "actions": [],
+        "not_actions": [],
+        "data_actions": [
+          "Microsoft.DeviceUpdate/updateAccounts/agents/requestUpdate/action"
+        ],
         "not_data_actions": []
       }
     ]
@@ -14759,6 +14759,20 @@
         ],
         "not_actions": [],
         "data_actions": [],
+        "not_data_actions": []
+      }
+    ]
+  },
+  {
+    "RoleName": "Durable Task Worker",
+    "Description": "Used by worker applications to interact with the Durable Task service",
+    "Permissions": [
+      {
+        "actions": [],
+        "not_actions": [],
+        "data_actions": [
+          "Microsoft.DurableTask/data/execute"
+        ],
         "not_data_actions": []
       }
     ]
